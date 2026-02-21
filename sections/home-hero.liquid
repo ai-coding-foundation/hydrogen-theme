@@ -13,6 +13,7 @@
     {%- if section.settings.image != blank -%}
       {%- liquid
         assign image_height = section.settings.image.width | divided_by: section.settings.image.aspect_ratio
+        assign img_alt = section.settings.image.alt | escape
       -%}
       {{
         section.settings.image
@@ -26,8 +27,7 @@
           class: 'block h-full w-full object-cover',
           sizes: '100vw',
           widths: '375, 550, 750, 1100, 1500, 1780, 2000, 3000, 3840',
-          alt: section.settings.image.alt
-        | escape
+          alt: img_alt
       }}
     {%- else -%}
       <div class="bg-primary h-full w-full">

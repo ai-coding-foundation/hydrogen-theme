@@ -25,10 +25,11 @@
     <div class="mt-16 space-y-20 md:mt-20 md:space-y-24 lg:mt-24 lg:space-y-32">
       {%- for block in section.blocks -%}
         {%- if block.type == 'flavor' -%}
-          {%- liquid
-            assign is_even = forloop.index0 | modulo: 2 | eq: 0
-            assign image_first = is_even
-          -%}
+          {%- if forloop.index0 | modulo: 2 == 0 -%}
+            {%- assign image_first = true -%}
+          {%- else -%}
+            {%- assign image_first = false -%}
+          {%- endif -%}
           <div
             class="grid grid-cols-1 gap-8 md:gap-12 lg:gap-16 {% if image_first %}lg:grid-cols-[1.2fr_1fr]{% else %}lg:grid-cols-[1fr_1.2fr]{% endif %} items-center"
             {{ block.shopify_attributes }}
