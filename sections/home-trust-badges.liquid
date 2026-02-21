@@ -1,0 +1,99 @@
+{%- liquid
+  assign bg_class = 'bg-stage-neutral'
+  if section.settings.background_color == 'transparent'
+    assign bg_class = 'bg-transparent'
+  endif
+
+  assign icon_color_class = 'text-stage-cycle'
+  case section.settings.icon_color
+    when 'stage-transition'
+      assign icon_color_class = 'text-stage-transition'
+    when 'stage-thrive'
+      assign icon_color_class = 'text-stage-thrive'
+    when 'primary'
+      assign icon_color_class = 'text-primary'
+  endcase
+-%}
+
+<div
+  id="HomeTrustBadges-{{ section.id }}"
+  class="{{ bg_class }} w-full py-10 md:py-14"
+>
+  <div class="mx-auto max-w-7xl px-6 md:px-8">
+    {%- render 'trust-badges',
+      badges: section.settings.badges,
+      icon_size: 'w-10 h-10',
+      icon_color: icon_color_class,
+      show_labels: section.settings.show_labels
+    -%}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust badges",
+  "tag": "section",
+  "class": "section-home-trust-badges",
+  "settings": [
+    {
+      "type": "text",
+      "id": "badges",
+      "label": "Badge keys",
+      "default": "doctor-formulated,clinically-dosed,sugar-free,third-party-tested",
+      "info": "Comma-separated. Available: doctor-formulated, clinically-dosed, sugar-free, third-party-tested, gluten-free, vegetarian"
+    },
+    {
+      "type": "select",
+      "id": "icon_color",
+      "label": "Icon color",
+      "options": [
+        {
+          "value": "stage-cycle",
+          "label": "Stage cycle"
+        },
+        {
+          "value": "stage-transition",
+          "label": "Stage transition"
+        },
+        {
+          "value": "stage-thrive",
+          "label": "Stage thrive"
+        },
+        {
+          "value": "primary",
+          "label": "Primary"
+        }
+      ],
+      "default": "stage-cycle"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_labels",
+      "label": "Show labels",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "background_color",
+      "label": "Background",
+      "options": [
+        {
+          "value": "neutral",
+          "label": "Neutral"
+        },
+        {
+          "value": "transparent",
+          "label": "Transparent"
+        }
+      ],
+      "default": "neutral"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Trust badges",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}

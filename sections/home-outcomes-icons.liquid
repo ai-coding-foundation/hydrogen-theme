@@ -1,0 +1,115 @@
+{%- liquid
+  assign heading_tag = section.settings.heading_level
+  assign icon_color_map = 'text-primary'
+  case section.settings.icon_color
+    when 'stage-cycle'
+      assign icon_color_map = 'text-stage-cycle'
+    when 'stage-transition'
+      assign icon_color_map = 'text-stage-transition'
+    when 'stage-thrive'
+      assign icon_color_map = 'text-stage-thrive'
+    else
+      assign icon_color_map = 'text-primary'
+  endcase
+-%}
+
+<div class="py-16 md:py-24">
+  <div class="mx-auto max-w-7xl px-6 md:px-8">
+    <div class="flex flex-col items-center gap-6 text-center">
+      {%- if section.settings.heading != blank -%}
+        <{{ heading_tag }} class="text-h2 font-heading font-heading-weight">
+          {{ section.settings.heading | escape }}
+        </{{ heading_tag }}>
+      {%- endif -%}
+
+      {%- if section.settings.subheading != blank -%}
+        <p class="text-lead font-body">
+          {{ section.settings.subheading | escape }}
+        </p>
+      {%- endif -%}
+
+      {%- render 'outcomes-icons',
+        outcomes: section.settings.outcomes,
+        icon_color: icon_color_map,
+        show_labels: true
+      -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Outcomes icons",
+  "tag": "section",
+  "class": "section-home-outcomes-icons",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Support where it matters most"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading"
+    },
+    {
+      "type": "text",
+      "id": "outcomes",
+      "label": "Outcomes",
+      "default": "mood,energy,digestion,sleep",
+      "info": "Comma-separated: mood, energy, digestion, sleep"
+    },
+    {
+      "type": "select",
+      "id": "icon_color",
+      "label": "Icon color",
+      "options": [
+        {
+          "value": "primary",
+          "label": "Primary"
+        },
+        {
+          "value": "stage-cycle",
+          "label": "Stage cycle"
+        },
+        {
+          "value": "stage-transition",
+          "label": "Stage transition"
+        },
+        {
+          "value": "stage-thrive",
+          "label": "Stage thrive"
+        }
+      ],
+      "default": "primary"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Outcomes icons",
+      "category": "Homepage",
+      "settings": {
+        "heading": "Support where it matters most"
+      }
+    }
+  ]
+}
+{% endschema %}

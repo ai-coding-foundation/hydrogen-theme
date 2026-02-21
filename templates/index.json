@@ -1,131 +1,112 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "home_hero": {
+      "type": "home-hero",
+      "settings": {
+        "heading": "Your body evolves. Your essentials should too.",
+        "heading_level": "h1",
+        "subheading": "Stage-specific nutrition for every phase of womanhood",
+        "button_label": "Find Your Stage",
+        "button_link": "",
+        "overlay_opacity": 40
+      }
+    },
+    "home_trust_badges": {
+      "type": "home-trust-badges",
+      "settings": {
+        "badges": "doctor-formulated,clinically-dosed,sugar-free,third-party-tested",
+        "icon_color": "stage-cycle",
+        "show_labels": true,
+        "background_color": "neutral"
+      }
+    },
+    "home_outcomes_icons": {
+      "type": "home-outcomes-icons",
+      "settings": {
+        "heading": "Support where it matters most",
+        "heading_level": "h2",
+        "subheading": "",
+        "outcomes": "mood,energy,digestion,sleep",
+        "icon_color": "primary"
+      }
+    },
+    "home_flavor_first": {
+      "type": "home-flavor-first",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "flavor_1": {
+          "type": "flavor",
           "settings": {
-            "heading": "Image banner",
-            "heading_size": "xl",
-            "heading_level": "h2"
+            "name": "Yuzu Ginger",
+            "description": "Bright citrus meets warming spice"
           }
         },
-        "text": {
-          "type": "text",
+        "flavor_2": {
+          "type": "flavor",
           "settings": {
-            "text": "<p><strong>Give customers details about the banner image(s) or content on the template.</strong></p>",
-            "text_size": "lg"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "button_label": "Shop all →",
-            "button_variant": "link",
-            "button_size": "lg",
-            "button_link": "shopify://collections/all"
+            "name": "Blackberry Lime",
+            "description": "Tart, refreshing, and deeply satisfying"
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": ["flavor_1", "flavor_2"],
       "settings": {
-        "full_page_height_enable": true,
-        "lazy_load_enable": false,
-        "preload_first_image_enable": true
+        "heading": "Flavor worth looking forward to",
+        "heading_level": "h2",
+        "subheading": "No chalky powders. No pill fatigue. Just a delicious daily ritual."
       }
     },
-    "featured_collection": {
-      "type": "featured-collection",
+    "home_education_cards": {
+      "type": "home-education-cards",
       "blocks": {
-        "heading": {
-          "type": "heading",
-          "static": true,
+        "card_stage_guide": {
+          "type": "card",
           "settings": {
-            "heading": "Featured collection",
-            "heading_level": "h2",
-            "heading_size": "md"
+            "title": "Stage Guide",
+            "description": "Discover what your body needs at every stage",
+            "url": ""
           }
         },
-        "static-product-card": {
-          "type": "product-card",
-          "static": true,
+        "card_ingredients": {
+          "type": "card",
           "settings": {
-            "product": "{{ closest.product }}"
-          },
-          "blocks": {
-            "heading": {
-              "type": "text",
-              "static": true,
-              "settings": {
-                "text": "<p>{{ closest.product.title }}</p>"
-              }
-            },
-            "price": {
-              "type": "price",
-              "static": true,
-              "id": "price",
-              "settings": {
-                "product": "{{ closest.product }}"
-              }
-            },
-            "image": {
-              "type": "image",
-              "static": true,
-              "id": "image",
-              "settings": {
-                "image": "{{ closest.product.featured_image }}"
-              }
-            }
+            "title": "Ingredient Glossary",
+            "description": "Explore what goes into every formula and why",
+            "url": ""
+          }
+        },
+        "card_research": {
+          "type": "card",
+          "settings": {
+            "title": "Research Hub",
+            "description": "The science behind stage-specific nutrition",
+            "url": ""
           }
         }
       },
+      "block_order": ["card_stage_guide", "card_ingredients", "card_research"],
       "settings": {
-        "collection": "all",
-        "products_to_show": 8
+        "heading": "Explore the science",
+        "heading_level": "h2"
       }
     },
-    "collection_list": {
-      "type": "collection-list",
-      "blocks": {
-        "heading": {
-          "type": "heading",
-          "static": true,
-          "id": "heading",
-          "settings": {
-            "heading": "Collections",
-            "heading_level": "h2",
-            "heading_size": "md"
-          }
-        },
-        "collection-card": {
-          "type": "collection-card",
-          "id": "collection-card",
-          "static": true,
-          "settings": {
-            "collection": "{{ closest.collection }}"
-          },
-          "blocks": {
-            "image": {
-              "type": "image",
-              "static": true,
-              "id": "image",
-              "settings": {
-                "image": "{{ closest.collection.image }}"
-              }
-            },
-            "heading": {
-              "type": "heading",
-              "static": true,
-              "id": "heading",
-              "settings": {
-                "heading": "{{ closest.collection.title }}"
-              }
-            }
-          }
-        }
+    "home_email_capture": {
+      "type": "home-email-capture",
+      "settings": {
+        "heading": "Ready to feel the difference?",
+        "heading_level": "h2",
+        "subheading": "Join our community and be the first to know about new research, recipes, and exclusive offers.",
+        "button_label": "Subscribe",
+        "success_message": "Thanks for subscribing!",
+        "background_style": "dark"
       }
     }
   },
-  "order": ["image_banner", "featured_collection", "collection_list"]
+  "order": [
+    "home_hero",
+    "home_trust_badges",
+    "home_outcomes_icons",
+    "home_flavor_first",
+    "home_education_cards",
+    "home_email_capture"
+  ]
 }
