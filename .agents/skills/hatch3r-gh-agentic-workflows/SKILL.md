@@ -57,7 +57,7 @@ permissions:
 ```
 
 When a new issue is opened, analyze it, apply labels from the hatch3r taxonomy
-(type:_, priority:_, area:\*), and add a triage summary comment.
+(`type:*`, `priority:*`, `area:*`), and add a triage summary comment.
 
 ### 3. Continuous Documentation
 
@@ -89,7 +89,7 @@ After a PR is merged, check if documentation needs updating and open a follow-up
 
 ## Integration with hatch3r
 
-- hatch3r's label taxonomy (type:_, executor:_, priority:\*) aligns with agentic triage
+- hatch3r's label taxonomy (`type:*`, `executor:*`, `priority:*`) aligns with agentic triage
 - The hatch3r-test-writer agent's patterns can inform continuous testing workflows
 - The hatch3r-docs-writer agent's patterns can inform continuous documentation
 - Board management commands complement continuous triage
