@@ -1,0 +1,208 @@
+{%- liquid
+  assign loading = 'lazy'
+  assign fetchpriority = 'auto'
+-%}
+
+<div
+  id="HomeFlavorFirst-{{ section.id }}"
+  class="bg-stage-neutral w-full py-16 md:py-24 lg:py-32"
+>
+  <div class="mx-auto max-w-7xl px-6 md:px-8 lg:px-12">
+    {%- comment -%} Section heading + subheading centered {%- endcomment -%}
+    <header class="mx-auto max-w-3xl text-center">
+      {%- assign heading_tag = section.settings.heading_level -%}
+      <{{ heading_tag }} class="font-heading font-heading-weight text-h2 text-primary mb-4">
+        {{ section.settings.heading | escape }}
+      </{{ heading_tag }}>
+      {%- if section.settings.subheading != blank -%}
+        <p class="text-lead font-body text-primary/80">
+          {{ section.settings.subheading | escape }}
+        </p>
+      {%- endif -%}
+    </header>
+
+    {%- comment -%} Flavor blocks: 2-col grid, alternating image/text {%- endcomment -%}
+    <div class="mt-16 space-y-20 md:mt-20 md:space-y-24 lg:mt-24 lg:space-y-32">
+      {%- for block in section.blocks -%}
+        {%- if block.type == 'flavor' -%}
+          {%- if forloop.index0 | modulo: 2 == 0 -%}
+            {%- assign image_first = true -%}
+          {%- else -%}
+            {%- assign image_first = false -%}
+          {%- endif -%}
+          <div
+            class="grid grid-cols-1 gap-8 md:gap-12 lg:gap-16 {% if image_first %}lg:grid-cols-[1.2fr_1fr]{% else %}lg:grid-cols-[1fr_1.2fr]{% endif %} items-center"
+            {{ block.shopify_attributes }}
+          >
+            {%- if image_first -%}
+              {%- comment -%} Image column {%- endcomment -%}
+              <div class="relative aspect-[4/5] min-h-[20rem] overflow-hidden rounded-lg">
+                {%- if block.settings.image != blank -%}
+                  {%- liquid
+                    assign img = block.settings.image
+                    assign img_height = img.width | divided_by: img.aspect_ratio
+                    assign img_alt = block.settings.name | escape
+                  -%}
+                  {{
+                    img
+                    | image_url: width: 1500
+                    | image_tag:
+                      loading: loading,
+                      fetchpriority: fetchpriority,
+                      width: img.width,
+                      height: img_height,
+                      class: 'block h-full w-full object-cover',
+                      sizes: '(min-width: 1024px) 50vw, 100vw',
+                      widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+                      alt: img_alt
+                  }}
+                {%- else -%}
+                  <div class="bg-stage-cycle/10 flex h-full w-full items-center justify-center">
+                    {{ 'product-1' | placeholder_svg_tag: 'h-32 w-32 fill-stage-cycle/30' }}
+                  </div>
+                {%- endif -%}
+              </div>
+              {%- comment -%} Text column {%- endcomment -%}
+              <div class="flex flex-col justify-center px-0 py-4 md:px-4 lg:px-8">
+                <h3 class="font-heading font-heading-weight text-h3 text-primary mb-3">
+                  {{ block.settings.name | escape }}
+                </h3>
+                {%- if block.settings.description != blank -%}
+                  <p class="text-lead font-body text-primary/80">
+                    {{ block.settings.description | escape }}
+                  </p>
+                {%- endif -%}
+              </div>
+            {%- else -%}
+              {%- comment -%} Text column first on odd rows {%- endcomment -%}
+              <div class="order-2 flex flex-col justify-center px-0 py-4 md:px-4 lg:order-1 lg:px-8">
+                <h3 class="font-heading font-heading-weight text-h3 text-primary mb-3">
+                  {{ block.settings.name | escape }}
+                </h3>
+                {%- if block.settings.description != blank -%}
+                  <p class="text-lead font-body text-primary/80">
+                    {{ block.settings.description | escape }}
+                  </p>
+                {%- endif -%}
+              </div>
+              {%- comment -%} Image column {%- endcomment -%}
+              <div class="relative order-1 aspect-[4/5] min-h-[20rem] overflow-hidden rounded-lg lg:order-2">
+                {%- if block.settings.image != blank -%}
+                  {%- liquid
+                    assign img = block.settings.image
+                    assign img_height = img.width | divided_by: img.aspect_ratio
+                    assign img_alt = block.settings.name | escape
+                  -%}
+                  {{
+                    img
+                    | image_url: width: 1500
+                    | image_tag:
+                      loading: loading,
+                      fetchpriority: fetchpriority,
+                      width: img.width,
+                      height: img_height,
+                      class: 'block h-full w-full object-cover',
+                      sizes: '(min-width: 1024px) 50vw, 100vw',
+                      widths: '375, 550, 750, 1100, 1500, 1780, 2000',
+                      alt: img_alt
+                  }}
+                {%- else -%}
+                  <div class="bg-stage-transition/10 flex h-full w-full items-center justify-center">
+                    {{ 'product-1' | placeholder_svg_tag: 'h-32 w-32 fill-stage-transition/30' }}
+                  </div>
+                {%- endif -%}
+              </div>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Flavor first",
+  "tag": "section",
+  "class": "section-home-flavor-first",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Flavor worth looking forward to"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "No chalky powders. No pill fatigue. Just a delicious daily ritual."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "flavor",
+      "name": "Flavor",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image",
+          "info": "Macro photography of liquid or ingredient textures"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Flavor name",
+          "default": "Flavor name"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Description",
+          "default": "Flavor description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Flavor first",
+      "category": "Homepage",
+      "blocks": [
+        {
+          "type": "flavor",
+          "settings": {
+            "name": "Yuzu Ginger",
+            "description": "Bright citrus meets warming spice"
+          }
+        },
+        {
+          "type": "flavor",
+          "settings": {
+            "name": "Blackberry Lime",
+            "description": "Tart, refreshing, and deeply satisfying"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

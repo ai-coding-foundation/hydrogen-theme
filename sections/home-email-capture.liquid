@@ -1,0 +1,173 @@
+{%- liquid
+  assign form_id = 'ContactFooter-' | append: section.id
+  assign input_id = 'NewsletterEmail-' | append: section.id
+  assign error_id = 'NewsletterError-' | append: section.id
+  assign success_id = 'NewsletterSuccess-' | append: section.id
+
+  if section.settings.background_style == 'dark'
+    assign section_bg = 'bg-primary text-contrast'
+    assign input_border = 'border-contrast/30'
+    assign input_placeholder = 'placeholder:text-contrast/60'
+    assign button_class = 'bg-contrast text-primary'
+  else
+    assign section_bg = 'bg-stage-neutral text-primary'
+    assign input_border = 'border-primary/30'
+    assign input_placeholder = 'placeholder:text-primary/60'
+    assign button_class = 'bg-primary text-contrast'
+  endif
+-%}
+
+<div
+  id="HomeEmailCapture-{{ section.id }}"
+  class="{{ section_bg }} w-full py-16 md:py-24"
+>
+  <div class="mx-auto max-w-7xl px-6 md:px-8">
+    <div class="mx-auto max-w-2xl text-center">
+      {%- comment -%} Heading + subheading {%- endcomment -%}
+      <header class="mb-8 md:mb-10">
+        {%- assign heading_tag = section.settings.heading_level -%}
+        <{{ heading_tag }}
+          class="font-heading font-heading-weight text-h2 mb-4"
+        >
+          {{ section.settings.heading | escape }}
+        </{{ heading_tag }}>
+        {%- if section.settings.subheading != blank -%}
+          <p class="text-lead font-body opacity-90">
+            {{ section.settings.subheading | escape }}
+          </p>
+        {%- endif -%}
+      </header>
+
+      {%- form 'customer', id: form_id, class: 'w-full' -%}
+        <input type="hidden" name="contact[tags]" value="newsletter">
+
+        {%- if form.posted_successfully? -%}
+          <div
+            id="{{ success_id }}"
+            class="text-lead font-body"
+            role="status"
+            tabindex="-1"
+            autofocus
+          >
+            {{ section.settings.success_message | escape }}
+          </div>
+        {%- else -%}
+          <div class="flex flex-col gap-4 sm:flex-row sm:items-stretch">
+            <div class="min-w-0 flex-1">
+              <label class="sr-only" for="{{ input_id }}">
+                {{ 'newsletter.label' | t }}
+              </label>
+              <input
+                id="{{ input_id }}"
+                type="email"
+                name="contact[email]"
+                value="{{ form.email }}"
+                required
+                autocomplete="email"
+                autocorrect="off"
+                autocapitalize="off"
+                class="w-full rounded-none border-b {{ input_border }} bg-transparent px-0 py-3 {{ input_placeholder }} focus:outline-none focus:ring-0"
+                placeholder="{{ 'newsletter.label' | t }}"
+                {% if form.errors %}
+                  aria-invalid="true"
+                  aria-describedby="{{ error_id }}"
+                  autofocus
+                {% endif %}
+              >
+              {%- if form.errors -%}
+                <p
+                  id="{{ error_id }}"
+                  class="text-small mt-2 text-red-500"
+                  role="alert"
+                >
+                  <span class="sr-only">{{ 'accessibility.error' | t }}</span>
+                  {{ form.errors.translated_fields.email | capitalize }}
+                  {{ form.errors.messages.email }}
+                </p>
+              {%- endif -%}
+            </div>
+            <button
+              type="submit"
+              class="button {{ button_class }} shrink-0 px-8 py-3"
+              name="commit"
+            >
+              {{ section.settings.button_label | escape }}
+            </button>
+          </div>
+        {%- endif -%}
+      {%- endform -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Email capture",
+  "tag": "section",
+  "class": "section-home-email-capture",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to feel the difference?"
+    },
+    {
+      "type": "select",
+      "id": "heading_level",
+      "label": "Heading level",
+      "options": [
+        {
+          "value": "h2",
+          "label": "H2"
+        },
+        {
+          "value": "h3",
+          "label": "H3"
+        }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Join our community and be the first to know about new research, recipes, and exclusive offers."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for subscribing!"
+    },
+    {
+      "type": "select",
+      "id": "background_style",
+      "label": "Background style",
+      "options": [
+        {
+          "value": "dark",
+          "label": "Dark"
+        },
+        {
+          "value": "light",
+          "label": "Light"
+        }
+      ],
+      "default": "dark"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Email capture",
+      "category": "Homepage"
+    }
+  ]
+}
+{% endschema %}
