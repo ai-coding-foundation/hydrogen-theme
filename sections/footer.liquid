@@ -17,31 +17,6 @@
 {% schema %}
 {
   "name": "Footer",
-  "blocks": [{ "type": "_footer-menu" }],
-  "default": {
-    "blocks": [
-      {
-        "type": "_footer-menu",
-        "settings": {
-          "heading": "Support",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "_footer-menu",
-        "settings": {
-          "heading": "Explore",
-          "menu": "footer"
-        }
-      },
-      {
-        "type": "_footer-menu",
-        "settings": {
-          "heading": "Learn",
-          "menu": "footer"
-        }
-      }
-    ]
-  }
+  "blocks": [{ "type": "@theme" }, { "type": "_footer-menu" }]
 }
 {% endschema %}
