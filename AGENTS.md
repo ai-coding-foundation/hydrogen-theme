@@ -149,6 +149,15 @@ Cursor users get additional specialized guidance via the hatch3r agent infrastru
 
 ---
 
+## Additional Skill assignment
+
+Always use these skills when involving these specific topics:
+- **nano-banana-pro** (`/.agents/skills/nano-banana-pro`): when images or assets are needed on the fly.
+- **seo-audit** (`/.agents/skills/seo-audit`): when SEO is part of the task
+- **ui-ux-pro-max** (`/.agents/skills/ui-ux-pro-max`): When user interface, design or user experience topics are part of the task.
+
+---
+
 ## Board Management
 
 This project uses three commands and an auto-maintained GitHub issue to manage the project board:
