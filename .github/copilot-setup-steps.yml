@@ -1,0 +1,7 @@
+# Environment setup for GitHub Copilot coding agent
+# Customize these steps for your project's requirements
+steps:
+  - name: Install dependencies
+    run: npm ci
+  - name: Build
+    run: npm run build

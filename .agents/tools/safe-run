@@ -1,0 +1,83 @@
+#!/bin/sh
+# safe-run -- hatch3r command execution wrapper
+# Validates commands against deny-commands.yml before execution.
+# Usage: safe-run <command> [args...]
+#
+# This is an optional enforcement layer. When enabled, agents should
+# route shell commands through safe-run to enforce the deny list.
+
+set -e
+
+if [ $# -eq 0 ]; then
+  echo "Usage: safe-run <command> [args...]" >&2
+  exit 1
+fi
+
+CMD="$*"
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+POLICY_DIR="$(dirname "$SCRIPT_DIR")/policy"
+DENY_FILE="$POLICY_DIR/deny-commands.yml"
+
+if [ ! -f "$DENY_FILE" ]; then
+  echo "[safe-run] Warning: deny-commands.yml not found at $DENY_FILE" >&2
+  echo "[safe-run] Proceeding without policy check." >&2
+  exec "$@"
+fi
+
+# Check command against deny list patterns (aligned with deny-commands.yml)
+check_denied() {
+  local cmd="$1"
+
+  # Destructive filesystem operations
+  case "$cmd" in
+    *"rm -rf /"*|*"rm -rf /*"*) return 0 ;;
+    *"rm -rf ~"*|*"rm -rf $HOME"*) return 0 ;;
+    *"mkfs"*|*"dd if="*) return 0 ;;
+  esac
+
+  # Unsafe git operations
+  case "$cmd" in
+    *"git push --force"*|*"git push -f"*) return 0 ;;
+    *"git reset --hard"*) return 0 ;;
+    *"git clean -fdx"*) return 0 ;;
+  esac
+
+  # Database destruction
+  case "$cmd" in
+    *"DROP DATABASE"*|*"drop database"*) return 0 ;;
+    *"DROP TABLE"*|*"drop table"*) return 0 ;;
+    *"TRUNCATE TABLE"*|*"truncate table"*) return 0 ;;
+  esac
+
+  # Remote code execution
+  case "$cmd" in
+    *"curl"*"| sh"*|*"curl"*"| bash"*) return 0 ;;
+    *"wget"*"| sh"*|*"wget"*"| bash"*) return 0 ;;
+  esac
+
+  # Unsafe permissions
+  case "$cmd" in
+    *"chmod 777"*|*"chmod -R 777"*) return 0 ;;
+  esac
+
+  # Package publishing
+  case "$cmd" in
+    *"npm publish"*) return 0 ;;
+  esac
+
+  # Environment destruction
+  case "$cmd" in
+    *"unset PATH"*|*"export PATH="*) return 0 ;;
+  esac
+
+  return 1
+}
+
+if check_denied "$CMD"; then
+  echo "[safe-run] BLOCKED: Command matches deny list pattern." >&2
+  echo "[safe-run] Command: $CMD" >&2
+  echo "[safe-run] Review deny-commands.yml for the full policy." >&2
+  exit 126
+fi
+
+exec "$@"
