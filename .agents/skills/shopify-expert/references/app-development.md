@@ -23,12 +23,12 @@
 
 ### App Types
 
-| Type | Use Case | Distribution |
-|------|----------|--------------|
-| Custom App | Single merchant, private | Manual install |
-| Public App | App Store listing | Shopify review |
-| Sales Channel | Custom storefront | App Store |
-| Embedded App | Admin integration | Either |
+| Type          | Use Case                 | Distribution   |
+| ------------- | ------------------------ | -------------- |
+| Custom App    | Single merchant, private | Manual install |
+| Public App    | App Store listing        | Shopify review |
+| Sales Channel | Custom storefront        | App Store      |
+| Embedded App  | Admin integration        | Either         |
 
 ### Modern Stack (2024+)
 
@@ -111,48 +111,48 @@ handle = "your-app-handle"
 
 ```typescript
 // app/shopify.server.ts
-import "@shopify/shopify-app-remix/adapters/node";
+import '@shopify/shopify-app-remix/adapters/node'
 import {
   ApiVersion,
   AppDistribution,
   shopifyApp,
-  DeliveryMethod,
-} from "@shopify/shopify-app-remix/server";
-import { PrismaSessionStorage } from "@shopify/shopify-app-session-storage-prisma";
-import prisma from "./db.server";
+  DeliveryMethod
+} from '@shopify/shopify-app-remix/server'
+import { PrismaSessionStorage } from '@shopify/shopify-app-session-storage-prisma'
+import prisma from './db.server'
 
 const shopify = shopifyApp({
   apiKey: process.env.SHOPIFY_API_KEY!,
   apiSecretKey: process.env.SHOPIFY_API_SECRET!,
   appUrl: process.env.SHOPIFY_APP_URL!,
-  scopes: process.env.SCOPES?.split(","),
+  scopes: process.env.SCOPES?.split(','),
   apiVersion: ApiVersion.October24,
   distribution: AppDistribution.AppStore,
   sessionStorage: new PrismaSessionStorage(prisma),
   webhooks: {
     APP_UNINSTALLED: {
       deliveryMethod: DeliveryMethod.Http,
-      callbackUrl: "/webhooks",
+      callbackUrl: '/webhooks'
     },
     PRODUCTS_CREATE: {
       deliveryMethod: DeliveryMethod.Http,
-      callbackUrl: "/webhooks",
+      callbackUrl: '/webhooks'
     },
     ORDERS_CREATE: {
       deliveryMethod: DeliveryMethod.Http,
-      callbackUrl: "/webhooks",
-    },
+      callbackUrl: '/webhooks'
+    }
   },
   hooks: {
     afterAuth: async ({ session, admin }) => {
       // Register webhooks after OAuth
-      shopify.registerWebhooks({ session });
+      shopify.registerWebhooks({ session })
 
       // Perform post-install setup
-      await setupShop(session, admin);
-    },
-  },
-});
+      await setupShop(session, admin)
+    }
+  }
+})
 
 async function setupShop(session: Session, admin: AdminApiContext) {
   // Store merchant data
@@ -162,19 +162,19 @@ async function setupShop(session: Session, admin: AdminApiContext) {
     create: {
       shopDomain: session.shop,
       accessToken: session.accessToken!,
-      installedAt: new Date(),
-    },
-  });
+      installedAt: new Date()
+    }
+  })
 }
 
-export default shopify;
-export const apiVersion = ApiVersion.October24;
-export const addDocumentResponseHeaders = shopify.addDocumentResponseHeaders;
-export const authenticate = shopify.authenticate;
-export const unauthenticated = shopify.unauthenticated;
-export const login = shopify.login;
-export const registerWebhooks = shopify.registerWebhooks;
-export const sessionStorage = shopify.sessionStorage;
+export default shopify
+export const apiVersion = ApiVersion.October24
+export const addDocumentResponseHeaders = shopify.addDocumentResponseHeaders
+export const authenticate = shopify.authenticate
+export const unauthenticated = shopify.unauthenticated
+export const login = shopify.login
+export const registerWebhooks = shopify.registerWebhooks
+export const sessionStorage = shopify.sessionStorage
 ```
 
 ### Protected Routes
@@ -279,35 +279,35 @@ const CREATE_PRODUCT = `
       }
     }
   }
-`;
+`
 
 // Usage
 const response = await admin.graphql(CREATE_PRODUCT, {
   variables: {
     input: {
-      title: "New Product",
-      descriptionHtml: "<p>Product description</p>",
-      vendor: "Your Brand",
-      productType: "T-Shirt",
-      tags: ["new", "featured"],
+      title: 'New Product',
+      descriptionHtml: '<p>Product description</p>',
+      vendor: 'Your Brand',
+      productType: 'T-Shirt',
+      tags: ['new', 'featured'],
       variants: [
         {
-          price: "29.99",
-          sku: "SKU-001",
-          inventoryManagement: "SHOPIFY",
-          inventoryPolicy: "DENY",
-          options: ["Small", "Blue"],
+          price: '29.99',
+          sku: 'SKU-001',
+          inventoryManagement: 'SHOPIFY',
+          inventoryPolicy: 'DENY',
+          options: ['Small', 'Blue']
         },
         {
-          price: "29.99",
-          sku: "SKU-002",
-          options: ["Medium", "Blue"],
-        },
+          price: '29.99',
+          sku: 'SKU-002',
+          options: ['Medium', 'Blue']
+        }
       ],
-      options: ["Size", "Color"],
-    },
-  },
-});
+      options: ['Size', 'Color']
+    }
+  }
+})
 
 // Update product
 const UPDATE_PRODUCT = `
@@ -323,7 +323,7 @@ const UPDATE_PRODUCT = `
       }
     }
   }
-`;
+`
 
 // Bulk operations for large datasets
 const BULK_MUTATION = `
@@ -339,7 +339,7 @@ const BULK_MUTATION = `
       }
     }
   }
-`;
+`
 ```
 
 ### Orders Management
@@ -394,7 +394,7 @@ const GET_ORDERS = `
       }
     }
   }
-`;
+`
 
 // Create fulfillment
 const CREATE_FULFILLMENT = `
@@ -414,7 +414,7 @@ const CREATE_FULFILLMENT = `
       }
     }
   }
-`;
+`
 ```
 
 ### Metafields
@@ -437,29 +437,29 @@ const SET_METAFIELDS = `
       }
     }
   }
-`;
+`
 
 // Usage
 await admin.graphql(SET_METAFIELDS, {
   variables: {
     metafields: [
       {
-        ownerId: "gid://shopify/Product/123456789",
-        namespace: "custom",
-        key: "care_instructions",
-        value: "Machine wash cold",
-        type: "single_line_text_field",
+        ownerId: 'gid://shopify/Product/123456789',
+        namespace: 'custom',
+        key: 'care_instructions',
+        value: 'Machine wash cold',
+        type: 'single_line_text_field'
       },
       {
-        ownerId: "gid://shopify/Product/123456789",
-        namespace: "custom",
-        key: "features",
-        value: JSON.stringify(["Organic cotton", "Fair trade", "Eco-friendly"]),
-        type: "list.single_line_text_field",
-      },
-    ],
-  },
-});
+        ownerId: 'gid://shopify/Product/123456789',
+        namespace: 'custom',
+        key: 'features',
+        value: JSON.stringify(['Organic cotton', 'Fair trade', 'Eco-friendly']),
+        type: 'list.single_line_text_field'
+      }
+    ]
+  }
+})
 
 // Read metafields
 const GET_PRODUCT_METAFIELDS = `
@@ -478,7 +478,7 @@ const GET_PRODUCT_METAFIELDS = `
       }
     }
   }
-`;
+`
 ```
 
 ---
@@ -489,57 +489,57 @@ const GET_PRODUCT_METAFIELDS = `
 
 ```typescript
 // app/routes/webhooks.tsx
-import type { ActionFunctionArgs } from "@remix-run/node";
-import { authenticate } from "../shopify.server";
-import db from "../db.server";
+import type { ActionFunctionArgs } from '@remix-run/node'
+import { authenticate } from '../shopify.server'
+import db from '../db.server'
 
 export async function action({ request }: ActionFunctionArgs) {
   const { topic, shop, session, admin, payload } =
-    await authenticate.webhook(request);
+    await authenticate.webhook(request)
 
-  console.log(`Received ${topic} webhook for ${shop}`);
+  console.log(`Received ${topic} webhook for ${shop}`)
 
   switch (topic) {
-    case "APP_UNINSTALLED":
-      await handleAppUninstalled(shop);
-      break;
+    case 'APP_UNINSTALLED':
+      await handleAppUninstalled(shop)
+      break
 
-    case "PRODUCTS_CREATE":
-      await handleProductCreate(shop, payload);
-      break;
+    case 'PRODUCTS_CREATE':
+      await handleProductCreate(shop, payload)
+      break
 
-    case "PRODUCTS_UPDATE":
-      await handleProductUpdate(shop, payload);
-      break;
+    case 'PRODUCTS_UPDATE':
+      await handleProductUpdate(shop, payload)
+      break
 
-    case "ORDERS_CREATE":
-      await handleOrderCreate(shop, payload, admin);
-      break;
+    case 'ORDERS_CREATE':
+      await handleOrderCreate(shop, payload, admin)
+      break
 
-    case "CUSTOMERS_DATA_REQUEST":
-      await handleDataRequest(shop, payload);
-      break;
+    case 'CUSTOMERS_DATA_REQUEST':
+      await handleDataRequest(shop, payload)
+      break
 
-    case "CUSTOMERS_REDACT":
-      await handleCustomerRedact(shop, payload);
-      break;
+    case 'CUSTOMERS_REDACT':
+      await handleCustomerRedact(shop, payload)
+      break
 
-    case "SHOP_REDACT":
-      await handleShopRedact(shop, payload);
-      break;
+    case 'SHOP_REDACT':
+      await handleShopRedact(shop, payload)
+      break
 
     default:
-      console.log(`Unhandled webhook topic: ${topic}`);
+      console.log(`Unhandled webhook topic: ${topic}`)
   }
 
-  return new Response("OK", { status: 200 });
+  return new Response('OK', { status: 200 })
 }
 
 async function handleAppUninstalled(shop: string) {
   // Clean up shop data
   await db.shop.delete({
-    where: { shopDomain: shop },
-  });
+    where: { shopDomain: shop }
+  })
 }
 
 async function handleProductCreate(shop: string, payload: any) {
@@ -550,9 +550,9 @@ async function handleProductCreate(shop: string, payload: any) {
       shopifyId: payload.admin_graphql_api_id,
       title: payload.title,
       handle: payload.handle,
-      status: payload.status,
-    },
-  });
+      status: payload.status
+    }
+  })
 }
 
 async function handleOrderCreate(shop: string, payload: any, admin: any) {
@@ -562,43 +562,46 @@ async function handleOrderCreate(shop: string, payload: any, admin: any) {
     orderNumber: payload.order_number,
     totalPrice: payload.total_price,
     customer: payload.customer,
-    lineItems: payload.line_items,
-  };
+    lineItems: payload.line_items
+  }
 
   // Example: Add order note
-  await admin.graphql(`
+  await admin.graphql(
+    `
     mutation addOrderNote($id: ID!, $note: String!) {
       orderUpdate(input: { id: $id, note: $note }) {
         order { id }
         userErrors { field message }
       }
     }
-  `, {
-    variables: {
-      id: order.id,
-      note: "Processed by Your App",
-    },
-  });
+  `,
+    {
+      variables: {
+        id: order.id,
+        note: 'Processed by Your App'
+      }
+    }
+  )
 }
 
 // GDPR webhooks (required for public apps)
 async function handleDataRequest(shop: string, payload: any) {
   // Return customer data
-  const customerId = payload.customer.id;
+  const customerId = payload.customer.id
   // Gather and return all customer data
 }
 
 async function handleCustomerRedact(shop: string, payload: any) {
   // Delete customer data
-  const customerId = payload.customer.id;
+  const customerId = payload.customer.id
   await db.customerData.deleteMany({
-    where: { shopDomain: shop, customerId: String(customerId) },
-  });
+    where: { shopDomain: shop, customerId: String(customerId) }
+  })
 }
 
 async function handleShopRedact(shop: string, payload: any) {
   // Delete all shop data (48 hours after uninstall)
-  await db.shop.delete({ where: { shopDomain: shop } });
+  await db.shop.delete({ where: { shopDomain: shop } })
 }
 ```
 
@@ -844,29 +847,33 @@ function SettingsPage() {
 
 ```typescript
 // tests/webhooks.test.ts
-import { describe, it, expect, vi } from "vitest";
-import { action } from "../app/routes/webhooks";
+import { describe, it, expect, vi } from 'vitest'
+import { action } from '../app/routes/webhooks'
 
-describe("Webhook handlers", () => {
-  it("handles product create webhook", async () => {
-    const mockRequest = new Request("https://app.com/webhooks", {
-      method: "POST",
+describe('Webhook handlers', () => {
+  it('handles product create webhook', async () => {
+    const mockRequest = new Request('https://app.com/webhooks', {
+      method: 'POST',
       headers: {
-        "X-Shopify-Topic": "products/create",
-        "X-Shopify-Shop-Domain": "test-shop.myshopify.com",
-        "X-Shopify-Hmac-Sha256": "valid-hmac",
+        'X-Shopify-Topic': 'products/create',
+        'X-Shopify-Shop-Domain': 'test-shop.myshopify.com',
+        'X-Shopify-Hmac-Sha256': 'valid-hmac'
       },
       body: JSON.stringify({
         id: 123456789,
-        title: "Test Product",
-        handle: "test-product",
-      }),
-    });
+        title: 'Test Product',
+        handle: 'test-product'
+      })
+    })
 
-    const response = await action({ request: mockRequest, params: {}, context: {} });
-    expect(response.status).toBe(200);
-  });
-});
+    const response = await action({
+      request: mockRequest,
+      params: {},
+      context: {}
+    })
+    expect(response.status).toBe(200)
+  })
+})
 ```
 
 ### Development

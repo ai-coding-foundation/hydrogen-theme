@@ -20,11 +20,11 @@ Adopt "Clinically-dosed minimalist formulas" as the primary competitive wedge �
 
 ## Alternatives Considered
 
-| Option | Pros | Cons |
-|--------|------|------|
-| **Option A (chosen):** Clinically-dosed minimalist formulas | Clear messaging ("fewer, better"), easier compliance, strong education angle | Perceived as "less" by ingredient-count shoppers |
-| **Option B:** Symptom-led personalization (quiz → stage + booster pack) | High personalization, upsell path | Complex to implement, higher SKU count, supply chain burden |
-| **Option C:** Ultra-clean GI-first delivery (gentler minerals, no sweeteners) | Niche differentiation, strong for sensitive consumers | Narrower audience, harder to market broadly |
+| Option                                                                        | Pros                                                                         | Cons                                                        |
+| ----------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| **Option A (chosen):** Clinically-dosed minimalist formulas                   | Clear messaging ("fewer, better"), easier compliance, strong education angle | Perceived as "less" by ingredient-count shoppers            |
+| **Option B:** Symptom-led personalization (quiz → stage + booster pack)       | High personalization, upsell path                                            | Complex to implement, higher SKU count, supply chain burden |
+| **Option C:** Ultra-clean GI-first delivery (gentler minerals, no sweeteners) | Niche differentiation, strong for sensitive consumers                        | Narrower audience, harder to market broadly                 |
 
 ## Consequences
 

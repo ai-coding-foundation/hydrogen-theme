@@ -3,6 +3,7 @@ id: hatch3r-healthcheck
 type: command
 description: Create a full-product QA and testing audit epic with one sub-issue per project module
 ---
+
 # Healthcheck — Full Product QA & Testing Audit
 
 Create a healthcheck epic on **{owner}/{repo}** with one sub-issue per logical project module, plus cross-module wiring and vision/roadmap alignment audits. Each sub-issue is a deep static-analysis audit task that, when picked up by the board workflow, produces a findings epic with actionable sub-issues for achieving full QA and testing coverage. The command only creates the initial audit epic — it does NOT execute any audits.
@@ -29,18 +30,18 @@ The product is divided into logical modules. Discover modules from the project s
 
 Example structure (adapt to project):
 
-| # | Module | Directories | Primary Specs |
-|---|--------|-------------|----------------|
-| 1 | Core Engine | `src/engine/` | `02_core-engine.md` |
-| 2 | Events | `src/events/` | `03_event-model.md` |
-| ... | ... | ... | ... |
+| #   | Module      | Directories   | Primary Specs       |
+| --- | ----------- | ------------- | ------------------- |
+| 1   | Core Engine | `src/engine/` | `02_core-engine.md` |
+| 2   | Events      | `src/events/` | `03_event-model.md` |
+| ... | ...         | ...           | ...                 |
 
 Plus two cross-cutting audits:
 
-| # | Audit | Scope |
-|---|-------|-------|
-| W | Cross-Module Wiring | Integration points between all modules |
-| R | Product vs Vision, Roadmap & Concept Alignment | Implementation vs product vision, roadmap, and specs |
+| #   | Audit                                          | Scope                                                |
+| --- | ---------------------------------------------- | ---------------------------------------------------- |
+| W   | Cross-Module Wiring                            | Integration points between all modules               |
+| R   | Product vs Vision, Roadmap & Concept Alignment | Implementation vs product vision, roadmap, and specs |
 
 ---
 

@@ -20,11 +20,11 @@ Use three life-stage segments (Cycle 18-40, Transition 40-55, Thrive 50+) as the
 
 ## Alternatives Considered
 
-| Option | Pros | Cons |
-|--------|------|------|
+| Option                              | Pros                                              | Cons                                                |
+| ----------------------------------- | ------------------------------------------------- | --------------------------------------------------- |
 | Category-based (by ingredient type) | Familiar e-commerce pattern, easy to add products | High decision fatigue, doesn't map to user identity |
-| Symptom-based (sleep/energy/mood) | Intent-driven, strong SEO | Overlapping symptoms across stages, complex IA |
-| Traditional age-range | Simple | Feels clinical, less aspirational |
+| Symptom-based (sleep/energy/mood)   | Intent-driven, strong SEO                         | Overlapping symptoms across stages, complex IA      |
+| Traditional age-range               | Simple                                            | Feels clinical, less aspirational                   |
 
 ## Consequences
 

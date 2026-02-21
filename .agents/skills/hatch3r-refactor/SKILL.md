@@ -2,6 +2,7 @@
 name: hatch3r-refactor
 description: Internal code quality improvement workflow without changing external behavior. Use when refactoring code structure, simplifying modules, or improving maintainability.
 ---
+
 # Code Refactor Workflow
 
 ## Quick Start

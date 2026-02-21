@@ -2,6 +2,7 @@
 name: hatch3r-issue-workflow
 description: Guides the 8-step agentic development workflow for GitHub issues. Covers parsing issues, loading skills, reading specs, planning, implementing, testing, opening PRs, and addressing review. Use when working on any GitHub issue or when the user mentions an issue number.
 ---
+
 # Issue Workflow
 
 ## Quick Start

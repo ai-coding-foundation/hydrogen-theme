@@ -20,8 +20,8 @@ This document provides a template for Architecture Decision Records (ADRs) in th
 
 ## Alternatives Considered
 
-| Option | Pros | Cons |
-|--------|------|------|
+| Option     | Pros   | Cons   |
+| ---------- | ------ | ------ |
 | [Option A] | [Pros] | [Cons] |
 | [Option B] | [Pros] | [Cons] |
 | [Option C] | [Pros] | [Cons] |

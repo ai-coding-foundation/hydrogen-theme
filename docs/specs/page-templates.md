@@ -8,16 +8,16 @@ This spec defines the required page templates and section modules for the EVOHER
 
 ## Home Template
 
-| # | Section Module | Description |
-|---|----------------|-------------|
-| 1 | **Hero** | H1 + subcopy + CTA "Find Your Stage" |
-| 2 | **Trust badges row** | Doctor formulated, clinically dosed, sugar-free, third-party tested |
-| 3 | **Outcomes icons** | Mood, energy, digestion, sleep |
-| 4 | **Stage selector** | Tabs → product cards → quick add |
-| 5 | **Made with safety & efficacy** | Advisor quotes + testing |
-| 6 | **Flavor-first section** | Macro photography |
-| 7 | **Education preview cards** | Stage Guide + Ingredients + Research |
-| 8 | **Final CTA + email capture** | |
+| #   | Section Module                  | Description                                                         |
+| --- | ------------------------------- | ------------------------------------------------------------------- |
+| 1   | **Hero**                        | H1 + subcopy + CTA "Find Your Stage"                                |
+| 2   | **Trust badges row**            | Doctor formulated, clinically dosed, sugar-free, third-party tested |
+| 3   | **Outcomes icons**              | Mood, energy, digestion, sleep                                      |
+| 4   | **Stage selector**              | Tabs → product cards → quick add                                    |
+| 5   | **Made with safety & efficacy** | Advisor quotes + testing                                            |
+| 6   | **Flavor-first section**        | Macro photography                                                   |
+| 7   | **Education preview cards**     | Stage Guide + Ingredients + Research                                |
+| 8   | **Final CTA + email capture**   |                                                                     |
 
 ---
 
@@ -25,52 +25,52 @@ This spec defines the required page templates and section modules for the EVOHER
 
 ### Above the Fold
 
-| Element | Description |
-|--------|-------------|
-| Stage tag + product name | |
-| Benefit bullets | |
-| Flavor selector | |
-| Subscription selector | Quarterly default + savings callouts |
-| Add to cart + trust icons | |
+| Element                   | Description                          |
+| ------------------------- | ------------------------------------ |
+| Stage tag + product name  |                                      |
+| Benefit bullets           |                                      |
+| Flavor selector           |                                      |
+| Subscription selector     | Quarterly default + savings callouts |
+| Add to cart + trust icons |                                      |
 
 ### Below the Fold
 
-| Element | Description |
-|---------|-------------|
-| What to expect timeline | Week 1, Weeks 2–3, etc. |
-| How to use | |
-| Supplement Facts | PDF/accordion |
+| Element                     | Description               |
+| --------------------------- | ------------------------- |
+| What to expect timeline     | Week 1, Weeks 2–3, etc.   |
+| How to use                  |                           |
+| Supplement Facts            | PDF/accordion             |
 | Science & research callouts | Careful: don't over-claim |
-| What's inside | Tabbed ingredient groups |
-| Comparison table | "How we compare" |
-| Reviews + FAQ | |
+| What's inside               | Tabbed ingredient groups  |
+| Comparison table            | "How we compare"          |
+| Reviews + FAQ               |                           |
 
 ---
 
 ## Ingredient Glossary
 
-| Feature | Description |
-|---------|-------------|
-| Search + filter | Filter by formula (metaobject-driven) |
+| Feature           | Description                                                                   |
+| ----------------- | ----------------------------------------------------------------------------- |
+| Search + filter   | Filter by formula (metaobject-driven)                                         |
 | Ingredient detail | Modal or page with: what it is, why included, stage relevance, sourcing notes |
 
 ---
 
 ## Stage Guide
 
-| Element | Description |
-|---------|-------------|
-| Stage timeline | |
-| Quality icons | Gluten-free, sugar-free, vegetarian, third-party tested |
-| Advisory board quotes section | Credibility block |
+| Element                       | Description                                             |
+| ----------------------------- | ------------------------------------------------------- |
+| Stage timeline                |                                                         |
+| Quality icons                 | Gluten-free, sugar-free, vegetarian, third-party tested |
+| Advisory board quotes section | Credibility block                                       |
 
 ---
 
 ## Research Hub (Blog)
 
-| Feature | Description |
-|---------|-------------|
-| Filters | By stage + ingredient topic |
+| Feature          | Description                                       |
+| ---------------- | ------------------------------------------------- |
+| Filters          | By stage + ingredient topic                       |
 | Internal linking | Every article → relevant product + glossary items |
 
 ---

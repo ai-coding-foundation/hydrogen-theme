@@ -23,14 +23,14 @@
 
 ### Extension Points
 
-| Extension | Purpose | API Version |
-|-----------|---------|-------------|
-| `Checkout::Dynamic::Render` | Add UI anywhere in checkout | 2024.10+ |
-| `Checkout::CartLineDetails::RenderAfter` | Below cart line items | 2024.10+ |
-| `Checkout::DeliveryAddress::RenderBefore` | Before delivery address | 2024.10+ |
-| `purchase.checkout.block.render` | Custom blocks in checkout | 2024.10+ |
-| `purchase.thank-you.block.render` | Thank you page | 2024.10+ |
-| `purchase.post-purchase.render` | Post-purchase upsell | 2024.10+ |
+| Extension                                 | Purpose                     | API Version |
+| ----------------------------------------- | --------------------------- | ----------- |
+| `Checkout::Dynamic::Render`               | Add UI anywhere in checkout | 2024.10+    |
+| `Checkout::CartLineDetails::RenderAfter`  | Below cart line items       | 2024.10+    |
+| `Checkout::DeliveryAddress::RenderBefore` | Before delivery address     | 2024.10+    |
+| `purchase.checkout.block.render`          | Custom blocks in checkout   | 2024.10+    |
+| `purchase.thank-you.block.render`         | Thank you page              | 2024.10+    |
+| `purchase.post-purchase.render`           | Post-purchase upsell        | 2024.10+    |
 
 ### Project Setup
 
@@ -99,23 +99,23 @@ import {
   BlockStack,
   Text,
   useExtensionCapability,
-  useBuyerJourneyIntercept,
-} from "@shopify/ui-extensions-react/checkout";
+  useBuyerJourneyIntercept
+} from '@shopify/ui-extensions-react/checkout'
 
-export default reactExtension("purchase.checkout.block.render", () => (
+export default reactExtension('purchase.checkout.block.render', () => (
   <CheckoutBanner />
-));
+))
 
 function CheckoutBanner() {
-  const translate = useTranslate();
-  const { banner_text, banner_status } = useSettings();
+  const translate = useTranslate()
+  const { banner_text, banner_status } = useSettings()
 
   return (
     <Banner
-      status={banner_status || "info"}
-      title={banner_text || translate("default_banner_title")}
+      status={banner_status || 'info'}
+      title={banner_text || translate('default_banner_title')}
     />
-  );
+  )
 }
 ```
 
@@ -132,34 +132,34 @@ import {
   InlineStack,
   Image,
   BlockStack,
-  Divider,
-} from "@shopify/ui-extensions-react/checkout";
+  Divider
+} from '@shopify/ui-extensions-react/checkout'
 
 export default reactExtension(
-  "purchase.checkout.cart-line-list.render-after",
+  'purchase.checkout.cart-line-list.render-after',
   () => <CartUpsell />
-);
+)
 
 function CartUpsell() {
-  const cartLines = useCartLines();
-  const applyCartLinesChange = useApplyCartLinesChange();
+  const cartLines = useCartLines()
+  const applyCartLinesChange = useApplyCartLinesChange()
 
   // Example: Suggest complementary product based on cart contents
-  const upsellProduct = getUpsellRecommendation(cartLines);
+  const upsellProduct = getUpsellRecommendation(cartLines)
 
-  if (!upsellProduct) return null;
+  if (!upsellProduct) return null
 
   const handleAddToCart = async () => {
     const result = await applyCartLinesChange({
-      type: "addCartLine",
+      type: 'addCartLine',
       merchandiseId: upsellProduct.variantId,
-      quantity: 1,
-    });
+      quantity: 1
+    })
 
-    if (result.type === "error") {
-      console.error("Failed to add item:", result.message);
+    if (result.type === 'error') {
+      console.error('Failed to add item:', result.message)
     }
-  };
+  }
 
   return (
     <BlockStack spacing="loose">
@@ -181,13 +181,13 @@ function CartUpsell() {
         </Button>
       </InlineStack>
     </BlockStack>
-  );
+  )
 }
 
 function getUpsellRecommendation(cartLines: CartLine[]) {
   // Logic to determine upsell based on cart contents
   // This would typically call your backend or use metafields
-  return null; // Implement based on your business logic
+  return null // Implement based on your business logic
 }
 ```
 
@@ -203,63 +203,63 @@ import {
   Checkbox,
   BlockStack,
   Text,
-  useBuyerJourneyIntercept,
-} from "@shopify/ui-extensions-react/checkout";
-import { useState } from "react";
+  useBuyerJourneyIntercept
+} from '@shopify/ui-extensions-react/checkout'
+import { useState } from 'react'
 
 export default reactExtension(
-  "purchase.checkout.delivery-address.render-before",
+  'purchase.checkout.delivery-address.render-before',
   () => <DeliveryInstructions />
-);
+)
 
 function DeliveryInstructions() {
-  const [instructions, setInstructions] = useState("");
-  const [leaveAtDoor, setLeaveAtDoor] = useState(false);
-  const [error, setError] = useState("");
+  const [instructions, setInstructions] = useState('')
+  const [leaveAtDoor, setLeaveAtDoor] = useState(false)
+  const [error, setError] = useState('')
 
-  const applyMetafieldsChange = useApplyMetafieldsChange();
+  const applyMetafieldsChange = useApplyMetafieldsChange()
 
   // Block checkout if validation fails
   useBuyerJourneyIntercept(({ canBlockProgress }) => {
     if (canBlockProgress && leaveAtDoor && !instructions) {
       return {
-        behavior: "block",
-        reason: "Please provide delivery instructions when leaving at door",
+        behavior: 'block',
+        reason: 'Please provide delivery instructions when leaving at door',
         errors: [
           {
-            message: "Delivery instructions required",
-            target: "$.cart.deliveryInstructions",
-          },
-        ],
-      };
+            message: 'Delivery instructions required',
+            target: '$.cart.deliveryInstructions'
+          }
+        ]
+      }
     }
-    return { behavior: "allow" };
-  });
+    return { behavior: 'allow' }
+  })
 
   const handleInstructionsChange = async (value: string) => {
-    setInstructions(value);
-    setError("");
+    setInstructions(value)
+    setError('')
 
     await applyMetafieldsChange({
-      type: "updateMetafield",
-      namespace: "custom",
-      key: "delivery_instructions",
-      valueType: "string",
-      value,
-    });
-  };
+      type: 'updateMetafield',
+      namespace: 'custom',
+      key: 'delivery_instructions',
+      valueType: 'string',
+      value
+    })
+  }
 
   const handleLeaveAtDoorChange = async (checked: boolean) => {
-    setLeaveAtDoor(checked);
+    setLeaveAtDoor(checked)
 
     await applyMetafieldsChange({
-      type: "updateMetafield",
-      namespace: "custom",
-      key: "leave_at_door",
-      valueType: "boolean",
-      value: String(checked),
-    });
-  };
+      type: 'updateMetafield',
+      namespace: 'custom',
+      key: 'leave_at_door',
+      valueType: 'boolean',
+      value: String(checked)
+    })
+  }
 
   return (
     <BlockStack spacing="base">
@@ -278,7 +278,7 @@ function DeliveryInstructions() {
         maxLength={250}
       />
     </BlockStack>
-  );
+  )
 }
 ```
 
@@ -542,95 +542,95 @@ import {
   Text,
   TextContainer,
   Layout,
-  View,
-} from "@shopify/post-purchase-ui-extensions-react";
+  View
+} from '@shopify/post-purchase-ui-extensions-react'
 
-extend("Checkout::PostPurchase::ShouldRender", async ({ inputData, storage }) => {
-  // Decide whether to show post-purchase page
-  const { initialPurchase } = inputData;
+extend(
+  'Checkout::PostPurchase::ShouldRender',
+  async ({ inputData, storage }) => {
+    // Decide whether to show post-purchase page
+    const { initialPurchase } = inputData
 
-  // Skip for orders under $50
-  const orderTotal = parseFloat(initialPurchase.totalPriceSet.shopMoney.amount);
-  if (orderTotal < 50) {
-    return { render: false };
+    // Skip for orders under $50
+    const orderTotal = parseFloat(
+      initialPurchase.totalPriceSet.shopMoney.amount
+    )
+    if (orderTotal < 50) {
+      return { render: false }
+    }
+
+    // Fetch upsell offer from your backend
+    const response = await fetch('https://your-app.com/api/upsell', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        orderId: initialPurchase.referenceId,
+        lineItems: initialPurchase.lineItems
+      })
+    })
+
+    const { offer } = await response.json()
+
+    if (!offer) {
+      return { render: false }
+    }
+
+    // Store offer data for render phase
+    await storage.update({ offer })
+
+    return { render: true }
   }
+)
 
-  // Fetch upsell offer from your backend
-  const response = await fetch("https://your-app.com/api/upsell", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      orderId: initialPurchase.referenceId,
-      lineItems: initialPurchase.lineItems,
-    }),
-  });
-
-  const { offer } = await response.json();
-
-  if (!offer) {
-    return { render: false };
-  }
-
-  // Store offer data for render phase
-  await storage.update({ offer });
-
-  return { render: true };
-});
-
-render("Checkout::PostPurchase::Render", () => <PostPurchaseOffer />);
+render('Checkout::PostPurchase::Render', () => <PostPurchaseOffer />)
 
 function PostPurchaseOffer() {
-  const {
-    storage,
-    inputData,
-    calculateChangeset,
-    applyChangeset,
-    done,
-  } = useExtensionInput();
+  const { storage, inputData, calculateChangeset, applyChangeset, done } =
+    useExtensionInput()
 
-  const [loading, setLoading] = useState(false);
-  const [accepted, setAccepted] = useState(false);
+  const [loading, setLoading] = useState(false)
+  const [accepted, setAccepted] = useState(false)
 
-  const offer = storage.initialData.offer;
+  const offer = storage.initialData.offer
 
   const handleAccept = async () => {
-    setLoading(true);
+    setLoading(true)
 
     // Calculate price with the upsell item
     const changeset = await calculateChangeset({
       changes: [
         {
-          type: "add_variant",
+          type: 'add_variant',
           variantId: offer.variantId,
           quantity: 1,
           discount: {
             value: offer.discountPercentage,
-            valueType: "percentage",
-            title: "Post-purchase discount",
-          },
-        },
-      ],
-    });
+            valueType: 'percentage',
+            title: 'Post-purchase discount'
+          }
+        }
+      ]
+    })
 
     // Apply the upsell to the order
-    await applyChangeset(changeset.token);
+    await applyChangeset(changeset.token)
 
-    setAccepted(true);
-    setLoading(false);
+    setAccepted(true)
+    setLoading(false)
 
     // Track conversion
-    await fetch("https://your-app.com/api/upsell/accepted", {
-      method: "POST",
-      body: JSON.stringify({ orderId: inputData.initialPurchase.referenceId }),
-    });
+    await fetch('https://your-app.com/api/upsell/accepted', {
+      method: 'POST',
+      body: JSON.stringify({ orderId: inputData.initialPurchase.referenceId })
+    })
 
     // Wait a moment then proceed
-    setTimeout(() => done(), 2000);
-  };
+    setTimeout(() => done(), 2000)
+  }
 
   const handleDecline = () => {
-    done();
-  };
+    done()
+  }
 
   if (accepted) {
     return (
@@ -639,20 +639,22 @@ function PostPurchaseOffer() {
           <Text>{offer.title} has been added to your order.</Text>
         </CalloutBanner>
       </BlockStack>
-    );
+    )
   }
 
   return (
     <BlockStack spacing="loose">
       <CalloutBanner title="Exclusive offer just for you!">
-        <Text>Get {offer.discountPercentage}% off this item when you add it now.</Text>
+        <Text>
+          Get {offer.discountPercentage}% off this item when you add it now.
+        </Text>
       </CalloutBanner>
 
       <Layout
         media={[
-          { viewportSize: "small", sizes: [1, 1] },
-          { viewportSize: "medium", sizes: [1, 1] },
-          { viewportSize: "large", sizes: [1, 1] },
+          { viewportSize: 'small', sizes: [1, 1] },
+          { viewportSize: 'medium', sizes: [1, 1] },
+          { viewportSize: 'large', sizes: [1, 1] }
         ]}
       >
         <View>
@@ -667,7 +669,7 @@ function PostPurchaseOffer() {
             <Text emphasis="bold">
               <Text appearance="subdued" role="deletion">
                 {offer.originalPrice}
-              </Text>{" "}
+              </Text>{' '}
               {offer.discountedPrice}
             </Text>
             <BlockStack spacing="tight">
@@ -682,7 +684,7 @@ function PostPurchaseOffer() {
         </View>
       </Layout>
     </BlockStack>
-  );
+  )
 }
 ```
 
@@ -757,7 +759,7 @@ const UPDATE_CHECKOUT_BRANDING = `
       }
     }
   }
-`;
+`
 
 // Example branding configuration
 const brandingInput = {
@@ -766,47 +768,47 @@ const brandingInput = {
       schemes: {
         scheme1: {
           base: {
-            background: "#FFFFFF",
-            text: "#1A1A1A",
-            accent: "#0066CC",
+            background: '#FFFFFF',
+            text: '#1A1A1A',
+            accent: '#0066CC'
           },
           primaryButton: {
-            background: "#0066CC",
-            text: "#FFFFFF",
+            background: '#0066CC',
+            text: '#FFFFFF'
           },
           control: {
-            background: "#F5F5F5",
-            border: "#CCCCCC",
-          },
-        },
-      },
+            background: '#F5F5F5',
+            border: '#CCCCCC'
+          }
+        }
+      }
     },
     typography: {
       primary: {
         shopifyFontGroup: {
-          name: "Inter",
-        },
-      },
+          name: 'Inter'
+        }
+      }
     },
     cornerRadius: {
       base: 8,
       small: 4,
-      large: 16,
-    },
+      large: 16
+    }
   },
   customizations: {
     primaryButton: {
-      cornerRadius: "LARGE",
-      blockPadding: "BASE",
+      cornerRadius: 'LARGE',
+      blockPadding: 'BASE'
     },
     headingLevel1: {
       typography: {
-        size: "EXTRA_LARGE",
-        weight: "BOLD",
-      },
-    },
-  },
-};
+        size: 'EXTRA_LARGE',
+        weight: 'BOLD'
+      }
+    }
+  }
+}
 ```
 
 ---

@@ -23,13 +23,13 @@
 
 ### Target Benchmarks
 
-| Metric | Good | Needs Improvement | Poor |
-|--------|------|-------------------|------|
-| LCP (Largest Contentful Paint) | < 2.5s | 2.5s - 4s | > 4s |
-| FID (First Input Delay) | < 100ms | 100ms - 300ms | > 300ms |
-| CLS (Cumulative Layout Shift) | < 0.1 | 0.1 - 0.25 | > 0.25 |
-| TTFB (Time to First Byte) | < 600ms | 600ms - 1800ms | > 1800ms |
-| Speed Index | < 3.4s | 3.4s - 5.8s | > 5.8s |
+| Metric                         | Good    | Needs Improvement | Poor     |
+| ------------------------------ | ------- | ----------------- | -------- |
+| LCP (Largest Contentful Paint) | < 2.5s  | 2.5s - 4s         | > 4s     |
+| FID (First Input Delay)        | < 100ms | 100ms - 300ms     | > 300ms  |
+| CLS (Cumulative Layout Shift)  | < 0.1   | 0.1 - 0.25        | > 0.25   |
+| TTFB (Time to First Byte)      | < 600ms | 600ms - 1800ms    | > 1800ms |
+| Speed Index                    | < 3.4s  | 3.4s - 5.8s       | > 5.8s   |
 
 ### Measuring Performance
 
@@ -47,7 +47,7 @@ npm install web-vitals
 
 ```javascript
 // Track Core Web Vitals
-import { onCLS, onFID, onLCP, onTTFB, onINP } from 'web-vitals';
+import { onCLS, onFID, onLCP, onTTFB, onINP } from 'web-vitals'
 
 function sendToAnalytics({ name, delta, id }) {
   // Send to your analytics service
@@ -55,15 +55,15 @@ function sendToAnalytics({ name, delta, id }) {
     event_category: 'Web Vitals',
     event_label: id,
     value: Math.round(name === 'CLS' ? delta * 1000 : delta),
-    non_interaction: true,
-  });
+    non_interaction: true
+  })
 }
 
-onCLS(sendToAnalytics);
-onFID(sendToAnalytics);
-onLCP(sendToAnalytics);
-onTTFB(sendToAnalytics);
-onINP(sendToAnalytics); // Replaces FID in 2024
+onCLS(sendToAnalytics)
+onFID(sendToAnalytics)
+onLCP(sendToAnalytics)
+onTTFB(sendToAnalytics)
+onINP(sendToAnalytics) // Replaces FID in 2024
 ```
 
 ---
@@ -80,33 +80,35 @@ onINP(sendToAnalytics); // Replaces FID in 2024
 %}
 
 <img
-  srcset="
+  srcset='
     {%- for width in image_widths -%}
       {{ image | image_url: width: width }} {{ width }}w{% unless forloop.last %}, {% endunless %}
     {%- endfor -%}
-  "
-  sizes="(min-width: 1200px) 50vw, (min-width: 768px) 75vw, 100vw"
-  src="{{ image | image_url: width: 720 }}"
-  alt="{{ image.alt | escape }}"
-  width="{{ image.width }}"
-  height="{{ image.height }}"
-  loading="lazy"
-  decoding="async"
+  '
+  sizes='(min-width: 1200px) 50vw, (min-width: 768px) 75vw, 100vw'
+  src='{{ image | image_url: width: 720 }}'
+  alt='{{ image.alt | escape }}'
+  width='{{ image.width }}'
+  height='{{ image.height }}'
+  loading='lazy'
+  decoding='async'
 >
 
 {% comment %} For hero/above-the-fold images - no lazy loading {% endcomment %}
 <img
-  srcset="{{ image | image_url: width: 1080 }} 1080w,
-          {{ image | image_url: width: 1920 }} 1920w,
-          {{ image | image_url: width: 2560 }} 2560w"
-  sizes="100vw"
-  src="{{ image | image_url: width: 1920 }}"
-  alt="{{ image.alt | escape }}"
-  width="{{ image.width }}"
-  height="{{ image.height }}"
-  loading="eager"
-  fetchpriority="high"
-  decoding="sync"
+  srcset='
+    {{ image | image_url: width: 1080 }} 1080w,
+    {{ image | image_url: width: 1920 }} 1920w,
+    {{ image | image_url: width: 2560 }} 2560w
+  '
+  sizes='100vw'
+  src='{{ image | image_url: width: 1920 }}'
+  alt='{{ image.alt | escape }}'
+  width='{{ image.width }}'
+  height='{{ image.height }}'
+  loading='eager'
+  fetchpriority='high'
+  decoding='sync'
 >
 ```
 
@@ -116,20 +118,22 @@ onINP(sendToAnalytics); // Replaces FID in 2024
 {% comment %} Different crops for mobile vs desktop {% endcomment %}
 <picture>
   <source
-    media="(max-width: 749px)"
-    srcset="{{ section.settings.mobile_image | image_url: width: 750 }}"
+    media='(max-width: 749px)'
+    srcset='{{ section.settings.mobile_image | image_url: width: 750 }}'
   >
   <source
-    media="(min-width: 750px)"
-    srcset="{{ section.settings.desktop_image | image_url: width: 1500 }} 1x,
-            {{ section.settings.desktop_image | image_url: width: 3000 }} 2x"
+    media='(min-width: 750px)'
+    srcset='
+      {{ section.settings.desktop_image | image_url: width: 1500 }} 1x,
+      {{ section.settings.desktop_image | image_url: width: 3000 }} 2x
+    '
   >
   <img
-    src="{{ section.settings.desktop_image | image_url: width: 1500 }}"
-    alt="{{ section.settings.desktop_image.alt | escape }}"
-    width="1500"
-    height="600"
-    loading="lazy"
+    src='{{ section.settings.desktop_image | image_url: width: 1500 }}'
+    alt='{{ section.settings.desktop_image.alt | escape }}'
+    width='1500'
+    height='600'
+    loading='lazy'
   >
 </picture>
 ```
@@ -167,21 +171,21 @@ onINP(sendToAnalytics); // Replaces FID in 2024
 {% comment %} layout/theme.liquid {% endcomment %}
 
 {% comment %} Critical JS - loaded sync {% endcomment %}
-<script src="{{ 'critical.js' | asset_url }}"></script>
+<script src='{{ 'critical.js' | asset_url }}'></script>
 
 {% comment %} Non-critical JS - deferred {% endcomment %}
-<script src="{{ 'theme.js' | asset_url }}" defer></script>
-<script src="{{ 'cart.js' | asset_url }}" defer></script>
+<script src='{{ 'theme.js' | asset_url }}' defer></script>
+<script src='{{ 'cart.js' | asset_url }}' defer></script>
 
 {% comment %} Third-party scripts - load after page {% endcomment %}
 <script>
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     // Load analytics, chat widgets, etc.
-    var script = document.createElement('script');
-    script.src = 'https://third-party.com/widget.js';
-    script.async = true;
-    document.body.appendChild(script);
-  });
+    var script = document.createElement('script')
+    script.src = 'https://third-party.com/widget.js'
+    script.async = true
+    document.body.appendChild(script)
+  })
 </script>
 ```
 
@@ -191,27 +195,27 @@ onINP(sendToAnalytics); // Replaces FID in 2024
 // assets/product.js
 const ProductForm = {
   init() {
-    const form = document.querySelector('[data-product-form]');
-    if (!form) return;
+    const form = document.querySelector('[data-product-form]')
+    if (!form) return
 
-    this.form = form;
-    this.bindEvents();
+    this.form = form
+    this.bindEvents()
   },
 
   bindEvents() {
-    this.form.addEventListener('submit', this.handleSubmit.bind(this));
+    this.form.addEventListener('submit', this.handleSubmit.bind(this))
   },
 
   async handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault()
 
     // Lazy load cart functionality when needed
-    const { Cart } = await import('./cart.js');
-    Cart.add(new FormData(this.form));
+    const { Cart } = await import('./cart.js')
+    Cart.add(new FormData(this.form))
   }
-};
+}
 
-document.addEventListener('DOMContentLoaded', () => ProductForm.init());
+document.addEventListener('DOMContentLoaded', () => ProductForm.init())
 ```
 
 ### Intersection Observer for Lazy Loading
@@ -221,65 +225,68 @@ document.addEventListener('DOMContentLoaded', () => ProductForm.init());
 const lazyLoad = {
   init() {
     if ('IntersectionObserver' in window) {
-      this.observer = new IntersectionObserver(this.handleIntersect.bind(this), {
-        rootMargin: '200px 0px', // Load 200px before viewport
-        threshold: 0.01
-      });
+      this.observer = new IntersectionObserver(
+        this.handleIntersect.bind(this),
+        {
+          rootMargin: '200px 0px', // Load 200px before viewport
+          threshold: 0.01
+        }
+      )
 
-      document.querySelectorAll('[data-lazy]').forEach(el => {
-        this.observer.observe(el);
-      });
+      document.querySelectorAll('[data-lazy]').forEach((el) => {
+        this.observer.observe(el)
+      })
     } else {
       // Fallback for older browsers
-      this.loadAll();
+      this.loadAll()
     }
   },
 
   handleIntersect(entries) {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        this.load(entry.target);
-        this.observer.unobserve(entry.target);
+        this.load(entry.target)
+        this.observer.unobserve(entry.target)
       }
-    });
+    })
   },
 
   load(element) {
-    const type = element.dataset.lazy;
+    const type = element.dataset.lazy
 
     switch (type) {
       case 'image':
-        element.src = element.dataset.src;
+        element.src = element.dataset.src
         if (element.dataset.srcset) {
-          element.srcset = element.dataset.srcset;
+          element.srcset = element.dataset.srcset
         }
-        break;
+        break
 
       case 'section':
-        this.loadSection(element);
-        break;
+        this.loadSection(element)
+        break
 
       case 'video':
-        element.src = element.dataset.src;
-        break;
+        element.src = element.dataset.src
+        break
     }
 
-    element.removeAttribute('data-lazy');
+    element.removeAttribute('data-lazy')
   },
 
   async loadSection(element) {
-    const url = element.dataset.url;
-    const response = await fetch(url);
-    const html = await response.text();
-    element.innerHTML = html;
+    const url = element.dataset.url
+    const response = await fetch(url)
+    const html = await response.text()
+    element.innerHTML = html
   },
 
   loadAll() {
-    document.querySelectorAll('[data-lazy]').forEach(el => this.load(el));
+    document.querySelectorAll('[data-lazy]').forEach((el) => this.load(el))
   }
-};
+}
 
-document.addEventListener('DOMContentLoaded', () => lazyLoad.init());
+document.addEventListener('DOMContentLoaded', () => lazyLoad.init())
 ```
 
 ---
@@ -297,30 +304,28 @@ document.addEventListener('DOMContentLoaded', () => lazyLoad.init());
   </style>
 
   {% comment %} Preload full stylesheet {% endcomment %}
-  <link rel="preload" href="{{ 'theme.css' | asset_url }}" as="style">
+  <link rel='preload' href='{{ 'theme.css' | asset_url }}' as='style'>
 
   {% comment %} Load full stylesheet with low priority {% endcomment %}
   <link
-    rel="stylesheet"
-    href="{{ 'theme.css' | asset_url }}"
-    media="print"
+    rel='stylesheet'
+    href='{{ 'theme.css' | asset_url }}'
+    media='print'
     onload="this.media='all'"
   >
   <noscript>
-    <link rel="stylesheet" href="{{ 'theme.css' | asset_url }}">
+    <link rel='stylesheet' href='{{ 'theme.css' | asset_url }}'>
   </noscript>
 </head>
 ```
 
 ```liquid
-{% comment %} snippets/critical-css.liquid {% endcomment %}
-/* Reset and base styles */
-*,*::before,*::after{box-sizing:border-box}
+{% comment %} snippets/critical-css.liquid {% endcomment %} /* Reset and base
+styles */ *,*::before,*::after{box-sizing:border-box}
 body{margin:0;font-family:system-ui,-apple-system,sans-serif;line-height:1.5}
 img{max-width:100%;height:auto;display:block}
 
-/* Header layout */
-.header{position:sticky;top:0;z-index:100;background:#fff}
+/* Header layout */ .header{position:sticky;top:0;z-index:100;background:#fff}
 .header__wrapper{display:flex;align-items:center;justify-content:space-between;padding:1rem}
 
 /* Hero section */
@@ -337,11 +342,11 @@ img{max-width:100%;height:auto;display:block}
 ```liquid
 {% comment %} Always define dimensions {% endcomment %}
 <img
-  src="{{ image | image_url: width: 400 }}"
-  width="{{ image.width }}"
-  height="{{ image.height }}"
-  alt="{{ image.alt | escape }}"
-  loading="lazy"
+  src='{{ image | image_url: width: 400 }}'
+  width='{{ image.width }}'
+  height='{{ image.height }}'
+  alt='{{ image.alt | escape }}'
+  loading='lazy'
 >
 
 {% comment %} Use aspect-ratio CSS {% endcomment %}
@@ -360,7 +365,7 @@ img{max-width:100%;height:auto;display:block}
 </style>
 
 {% comment %} Reserve space for dynamic content {% endcomment %}
-<div class="reviews-container" style="min-height: 200px;">
+<div class='reviews-container' style='min-height: 200px;'>
   {% comment %} Reviews loaded via JS {% endcomment %}
 </div>
 ```
@@ -371,15 +376,15 @@ img{max-width:100%;height:auto;display:block}
 {% comment %} layout/theme.liquid head section {% endcomment %}
 
 {% comment %} Preconnect to font providers {% endcomment %}
-<link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+<link rel='preconnect' href='https://fonts.shopifycdn.com' crossorigin>
 
 {% comment %} Preload critical fonts {% endcomment %}
 {% if settings.type_header_font.system? == false %}
   <link
-    rel="preload"
-    href="{{ settings.type_header_font | font_url }}"
-    as="font"
-    type="font/woff2"
+    rel='preload'
+    href='{{ settings.type_header_font | font_url }}'
+    as='font'
+    type='font/woff2'
     crossorigin
   >
 {% endif %}
@@ -417,30 +422,32 @@ img{max-width:100%;height:auto;display:block}
 {% comment %} layout/theme.liquid head {% endcomment %}
 
 {% comment %} DNS prefetch for third-party domains {% endcomment %}
-<link rel="dns-prefetch" href="https://cdn.shopify.com">
-<link rel="dns-prefetch" href="https://www.googletagmanager.com">
+<link rel='dns-prefetch' href='https://cdn.shopify.com'>
+<link rel='dns-prefetch' href='https://www.googletagmanager.com'>
 
 {% comment %} Preconnect for critical third-parties {% endcomment %}
-<link rel="preconnect" href="https://cdn.shopify.com" crossorigin>
+<link rel='preconnect' href='https://cdn.shopify.com' crossorigin>
 
 {% comment %} Preload hero image (above the fold) {% endcomment %}
 {% if template == 'index' %}
-  {% assign hero_image = sections['hero'].settings.image %}
+  {% assign hero_image = sections.hero.settings.image %}
   {% if hero_image %}
     <link
-      rel="preload"
-      as="image"
-      href="{{ hero_image | image_url: width: 1500 }}"
-      imagesrcset="{{ hero_image | image_url: width: 750 }} 750w,
-                   {{ hero_image | image_url: width: 1500 }} 1500w,
-                   {{ hero_image | image_url: width: 3000 }} 3000w"
-      imagesizes="100vw"
+      rel='preload'
+      as='image'
+      href='{{ hero_image | image_url: width: 1500 }}'
+      imagesrcset='
+        {{ hero_image | image_url: width: 750 }} 750w,
+        {{ hero_image | image_url: width: 1500 }} 1500w,
+        {{ hero_image | image_url: width: 3000 }} 3000w
+      '
+      imagesizes='100vw'
     >
   {% endif %}
 {% endif %}
 
 {% comment %} Preload critical scripts {% endcomment %}
-<link rel="modulepreload" href="{{ 'theme.js' | asset_url }}">
+<link rel='modulepreload' href='{{ 'theme.js' | asset_url }}'>
 ```
 
 ### Lazy Load Sections
@@ -451,13 +458,13 @@ img{max-width:100%;height:auto;display:block}
 {% comment %} In section file {% endcomment %}
 {% if section.index > 3 %}
   <div
-    class="lazy-section"
-    data-section-url="{{ section.id | prepend: '?section_id=' | prepend: request.path }}"
-    data-lazy="section"
+    class='lazy-section'
+    data-section-url='{{ section.id | prepend: '?section_id=' | prepend: request.path }}'
+    data-lazy='section'
   >
-    <div class="section-placeholder" style="min-height: 400px;">
+    <div class='section-placeholder' style='min-height: 400px;'>
       {% comment %} Loading skeleton {% endcomment %}
-      <div class="skeleton-loader"></div>
+      <div class='skeleton-loader'></div>
     </div>
   </div>
 {% else %}
@@ -469,32 +476,35 @@ img{max-width:100%;height:auto;display:block}
 ```javascript
 // assets/lazy-sections.js
 document.addEventListener('DOMContentLoaded', () => {
-  const lazySections = document.querySelectorAll('[data-lazy="section"]');
+  const lazySections = document.querySelectorAll('[data-lazy="section"]')
 
   if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(async (entry) => {
-        if (entry.isIntersecting) {
-          const section = entry.target;
-          const url = section.dataset.sectionUrl;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(async (entry) => {
+          if (entry.isIntersecting) {
+            const section = entry.target
+            const url = section.dataset.sectionUrl
 
-          try {
-            const response = await fetch(url);
-            const html = await response.text();
-            section.innerHTML = html;
-            section.removeAttribute('data-lazy');
-          } catch (error) {
-            console.error('Failed to load section:', error);
+            try {
+              const response = await fetch(url)
+              const html = await response.text()
+              section.innerHTML = html
+              section.removeAttribute('data-lazy')
+            } catch (error) {
+              console.error('Failed to load section:', error)
+            }
+
+            observer.unobserve(section)
           }
+        })
+      },
+      { rootMargin: '400px' }
+    )
 
-          observer.unobserve(section);
-        }
-      });
-    }, { rootMargin: '400px' });
-
-    lazySections.forEach(section => observer.observe(section));
+    lazySections.forEach((section) => observer.observe(section))
   }
-});
+})
 ```
 
 ---
@@ -511,23 +521,26 @@ document.addEventListener('DOMContentLoaded', () => {
 ```typescript
 // For Hydrogen/custom storefronts
 export async function loader({ context }: LoaderFunctionArgs) {
-  const { storefront } = context;
+  const { storefront } = context
 
   // Cache product data for 1 hour
   const products = await storefront.query(PRODUCTS_QUERY, {
-    cache: storefront.CacheLong(), // ~1 hour
-  });
+    cache: storefront.CacheLong() // ~1 hour
+  })
 
   // Short cache for inventory
   const inventory = await storefront.query(INVENTORY_QUERY, {
-    cache: storefront.CacheShort(), // ~1 minute
-  });
+    cache: storefront.CacheShort() // ~1 minute
+  })
 
-  return json({ products, inventory }, {
-    headers: {
-      'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400',
-    },
-  });
+  return json(
+    { products, inventory },
+    {
+      headers: {
+        'Cache-Control': 'public, max-age=3600, stale-while-revalidate=86400'
+      }
+    }
+  )
 }
 ```
 
@@ -542,57 +555,61 @@ const Cache = {
   set(key, value, customTtl) {
     const item = {
       value,
-      expiry: Date.now() + (customTtl || this.ttl),
-    };
+      expiry: Date.now() + (customTtl || this.ttl)
+    }
     try {
-      localStorage.setItem(this.prefix + key, JSON.stringify(item));
+      localStorage.setItem(this.prefix + key, JSON.stringify(item))
     } catch (e) {
       // Handle quota exceeded
-      this.cleanup();
+      this.cleanup()
     }
   },
 
   get(key) {
     try {
-      const item = JSON.parse(localStorage.getItem(this.prefix + key));
-      if (!item) return null;
+      const item = JSON.parse(localStorage.getItem(this.prefix + key))
+      if (!item) return null
       if (Date.now() > item.expiry) {
-        localStorage.removeItem(this.prefix + key);
-        return null;
+        localStorage.removeItem(this.prefix + key)
+        return null
       }
-      return item.value;
+      return item.value
     } catch (e) {
-      return null;
+      return null
     }
   },
 
   cleanup() {
-    const keys = Object.keys(localStorage).filter(k => k.startsWith(this.prefix));
-    keys.forEach(key => {
+    const keys = Object.keys(localStorage).filter((k) =>
+      k.startsWith(this.prefix)
+    )
+    keys.forEach((key) => {
       try {
-        const item = JSON.parse(localStorage.getItem(key));
+        const item = JSON.parse(localStorage.getItem(key))
         if (Date.now() > item.expiry) {
-          localStorage.removeItem(key);
+          localStorage.removeItem(key)
         }
       } catch (e) {
-        localStorage.removeItem(key);
+        localStorage.removeItem(key)
       }
-    });
+    })
   }
-};
+}
 
 // Usage: Cache product recommendations
 async function getRecommendations(productId) {
-  const cacheKey = `recommendations_${productId}`;
-  const cached = Cache.get(cacheKey);
+  const cacheKey = `recommendations_${productId}`
+  const cached = Cache.get(cacheKey)
 
-  if (cached) return cached;
+  if (cached) return cached
 
-  const response = await fetch(`/recommendations/products.json?product_id=${productId}&limit=4`);
-  const data = await response.json();
+  const response = await fetch(
+    `/recommendations/products.json?product_id=${productId}&limit=4`
+  )
+  const data = await response.json()
 
-  Cache.set(cacheKey, data.products);
-  return data.products;
+  Cache.set(cacheKey, data.products)
+  return data.products
 }
 ```
 
@@ -656,8 +673,8 @@ async function getRecommendations(productId) {
 <!-- Move third-party scripts to web worker -->
 <script>
   partytown = {
-    forward: ['dataLayer.push', 'fbq'],
-  };
+    forward: ['dataLayer.push', 'fbq']
+  }
 </script>
 <script src="/~partytown/partytown.js"></script>
 
@@ -679,6 +696,7 @@ async function getRecommendations(productId) {
 
 ```markdown
 ## Images
+
 - [ ] All images use responsive srcset
 - [ ] Above-fold images have fetchpriority="high"
 - [ ] Below-fold images have loading="lazy"
@@ -686,6 +704,7 @@ async function getRecommendations(productId) {
 - [ ] WebP format used where supported
 
 ## JavaScript
+
 - [ ] Non-critical JS is deferred
 - [ ] Third-party scripts load on interaction
 - [ ] No render-blocking scripts
@@ -693,6 +712,7 @@ async function getRecommendations(productId) {
 - [ ] Console errors resolved
 
 ## CSS
+
 - [ ] Critical CSS inlined
 - [ ] Non-critical CSS loaded async
 - [ ] No unused CSS in critical path
@@ -700,12 +720,14 @@ async function getRecommendations(productId) {
 - [ ] No layout shift from fonts
 
 ## Resources
+
 - [ ] Preconnect to critical origins
 - [ ] Preload critical assets
 - [ ] DNS prefetch for third parties
 - [ ] HTTP/2 server push configured
 
 ## Metrics
+
 - [ ] LCP < 2.5s on mobile
 - [ ] FID < 100ms
 - [ ] CLS < 0.1

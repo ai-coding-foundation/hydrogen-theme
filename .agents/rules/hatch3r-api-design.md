@@ -4,6 +4,7 @@ type: rule
 description: API endpoint and contract design patterns for the project
 scope: always
 ---
+
 # API Design
 
 - Use consistent request/response schemas. Document in spec files.

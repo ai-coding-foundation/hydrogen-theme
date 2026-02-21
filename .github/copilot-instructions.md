@@ -13,6 +13,7 @@ Priority order for tools and knowledge sources
 **Prefer GitHub MCP tools over `gh` CLI** when the MCP server provides typed tools with structured input/output. Use them as the primary interface for GitHub operations.
 
 **Fallback to `gh` CLI only when:**
+
 - The MCP tool catalog lacks the specific capability.
 - An MCP call fails repeatedly and the CLI provides a viable alternative.
 
@@ -23,6 +24,7 @@ Priority order for tools and knowledge sources
 Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific documentation for external libraries and frameworks. This prevents hallucinated APIs and outdated patterns.
 
 **When to use:**
+
 - Working with any external dependency.
 - Verifying API signatures, configuration options, or migration paths.
 - Reviewing code that uses third-party libraries.
@@ -30,6 +32,7 @@ Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific 
 - Debugging errors from external libraries.
 
 **When NOT to use:**
+
 - Internal project specs — use project docs.
 - Internal codebase patterns — use Grep, SemanticSearch, or exploration tools.
 - General programming concepts not tied to a specific library.
@@ -39,6 +42,7 @@ Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific 
 Use web search to retrieve current, real-world information not available in project docs or library documentation.
 
 **When to use:**
+
 - Latest security advisories, CVEs, or vulnerability disclosures for dependencies.
 - Breaking changes or deprecations in upcoming dependency versions.
 - Current best practices for architecture patterns, deployment strategies, or tooling.
@@ -46,6 +50,7 @@ Use web search to retrieve current, real-world information not available in proj
 - Comparing alternative approaches or tools with current community consensus.
 
 **When NOT to use:**
+
 - Questions answerable from project specs or codebase exploration.
 - Standard library API questions (use documentation MCP instead).
 - Internal project decisions (use project ADRs).
@@ -84,16 +89,16 @@ Performance budgets and targets for the project
 
 # Performance Budgets
 
-| Metric                            | Budget               |
-| --------------------------------- | -------------------- |
-| UI render                         | 60fps (16ms/frame)   |
-| Cold start to interactive         | 1.5 seconds          |
-| Idle CPU usage                    | 1%                   |
-| Memory footprint                  | 30 MB                |
-| Event processing latency          | 10ms per event       |
-| Bundle size (initial, gzipped)    | 500 KB               |
-| Backend reads per session start   | ≤ 5 documents        |
-| Serverless warm execution         | 500ms                |
+| Metric                          | Budget             |
+| ------------------------------- | ------------------ |
+| UI render                       | 60fps (16ms/frame) |
+| Cold start to interactive       | 1.5 seconds        |
+| Idle CPU usage                  | 1%                 |
+| Memory footprint                | 30 MB              |
+| Event processing latency        | 10ms per event     |
+| Bundle size (initial, gzipped)  | 500 KB             |
+| Backend reads per session start | ≤ 5 documents      |
+| Serverless warm execution       | 500ms              |
 
 ### hatch3r-observability
 
@@ -253,6 +258,5 @@ API endpoint and contract design patterns for the project
 - List endpoints return envelopes: `{ data, pagination }`. Never raw arrays.
 - Rate limiting enforced server-side. Return 429 with `Retry-After` when exceeded.
 - API contracts documented in project specs. Update on schema changes.
-
 
 <!-- HATCH3R:END -->

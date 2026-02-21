@@ -2,6 +2,7 @@
 name: hatch3r-incident-response
 description: Handle production incidents with structured triage, mitigation, and post-mortem. Use when responding to production issues, outages, or security incidents.
 ---
+
 # Incident Response Workflow
 
 ## Quick Start
@@ -22,8 +23,8 @@ Task Progress:
 | -------- | ------------------------------------------- | -------------------------------------------- |
 | P0       | Complete outage, data loss, security breach | App unusable, auth down, data exposed        |
 | P1       | Major degradation, significant user impact  | Sync failing, billing broken, >1% error rate |
-| P2       | Partial degradation, limited impact         | Single flow broken, slow performance       |
-| P3       | Minor issue, workaround available            | Cosmetic bug, edge case                     |
+| P2       | Partial degradation, limited impact         | Single flow broken, slow performance         |
+| P3       | Minor issue, workaround available           | Cosmetic bug, edge case                      |
 
 - Use **GitHub MCP** (`issue_read`, `search_issues`) to check for related issues or prior incidents.
 - For external library docs and current best practices, follow the project's tooling hierarchy.

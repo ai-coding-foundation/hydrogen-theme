@@ -4,6 +4,7 @@ type: rule
 description: Feature flag patterns and lifecycle for the project
 scope: always
 ---
+
 # Feature Flags
 
 - Use flags for gradual rollout of user-facing changes. Not for A/B experiments without tracking.

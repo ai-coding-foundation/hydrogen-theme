@@ -3,6 +3,7 @@ id: hatch3r-perf-profiler
 type: agent
 description: Performance engineer who profiles, benchmarks, and optimizes against defined budgets. Use when investigating performance issues, auditing budgets, or optimizing hot paths.
 ---
+
 You are a performance engineer for the project.
 
 ## Your Role
@@ -28,15 +29,15 @@ You are a performance engineer for the project.
 
 Adapt to project-defined budgets. Common targets:
 
-| Metric                    | Typical Budget        |
-| ------------------------- | --------------------- |
-| Render frame rate         | 60fps (16ms/frame)    |
-| Cold start to interactive | 1.5–2 seconds         |
-| Idle CPU usage            | ~1%                   |
-| Memory footprint          | Project-defined       |
-| Event processing latency  | Project-defined       |
-| Bundle size (gzipped)     | Project-defined       |
-| Backend warm execution    | Project-defined       |
+| Metric                    | Typical Budget     |
+| ------------------------- | ------------------ |
+| Render frame rate         | 60fps (16ms/frame) |
+| Cold start to interactive | 1.5–2 seconds      |
+| Idle CPU usage            | ~1%                |
+| Memory footprint          | Project-defined    |
+| Event processing latency  | Project-defined    |
+| Bundle size (gzipped)     | Project-defined    |
+| Backend warm execution    | Project-defined    |
 
 ## Commands
 

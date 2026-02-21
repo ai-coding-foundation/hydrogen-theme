@@ -3,6 +3,7 @@ id: hatch3r-board-fill
 type: command
 description: Create GitHub epics and issues from todo.md, reorganize the board with dependency analysis, readiness assessment, and implementation ordering.
 ---
+
 # Board Fill -- Create Epics & Issues from todo.md + Board Reorganization
 
 Create GitHub epics (with sub-issues) or standalone issues from items in `todo.md`, using the GitHub MCP tools against **{owner}/{repo}** (read from `/.agents/hatch.json` board config). On every run, board-fill also performs a **full board reorganization**: grouping standalone issues into epics, analyzing dependencies, setting implementation order, identifying parallel work, and marking issues as `status:ready` when all readiness criteria are met. AI proposes groupings, dependencies, and ordering; user confirms before anything is created or updated. Duplicate topics are detected and skipped.
@@ -212,13 +213,13 @@ Evaluate each open issue at `status:triage`. Classify as Ready (all criteria met
 
 Issue bodies must follow the structure for their type. Use this condensed reference:
 
-| Type                           | Body sections                                                                                             |
-| ------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| Bug Report                     | Summary, Steps to Reproduce, Expected/Actual Behavior, Acceptance Criteria, References, Dependencies      |
-| Feature Request                | Summary, Motivation, Proposed Solution, Acceptance Criteria, References, Dependencies                     |
-| Code/Logical/Visual Refactor   | Summary, Current State, Proposed Change, Acceptance Criteria, References, Dependencies                    |
-| QA Validation                  | Summary, Test Scope, Pass/Fail Criteria, Coverage Targets, Dependencies                                   |
-| Documentation / Infrastructure | Use Feature Request structure                                                                             |
+| Type                           | Body sections                                                                                        |
+| ------------------------------ | ---------------------------------------------------------------------------------------------------- |
+| Bug Report                     | Summary, Steps to Reproduce, Expected/Actual Behavior, Acceptance Criteria, References, Dependencies |
+| Feature Request                | Summary, Motivation, Proposed Solution, Acceptance Criteria, References, Dependencies                |
+| Code/Logical/Visual Refactor   | Summary, Current State, Proposed Change, Acceptance Criteria, References, Dependencies               |
+| QA Validation                  | Summary, Test Scope, Pass/Fail Criteria, Coverage Targets, Dependencies                              |
+| Documentation / Infrastructure | Use Feature Request structure                                                                        |
 
 **Epics** get: Overview (2-3 sentences), Sub-issues checklist, Acceptance criteria ("done when all sub-issues resolved"), all classified labels.
 

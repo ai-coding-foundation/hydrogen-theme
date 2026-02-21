@@ -2,6 +2,7 @@
 name: hatch3r-a11y-audit
 description: Comprehensive WCAG AA accessibility audit with findings and fixes. Use when auditing accessibility, verifying WCAG compliance, or improving a11y across the application.
 ---
+
 # Accessibility Audit Workflow
 
 ## Quick Start
@@ -88,7 +89,7 @@ Task Progress:
 | -------- | --------------------------------------- | ------------------------------------------------------------- |
 | Critical | Blocks core functionality, fails WCAG A | Missing form labels, no keyboard access to primary actions    |
 | Major    | Significant barrier, fails WCAG AA      | Contrast < 4.5:1, missing focus indicators, no reduced motion |
-| Minor    | Improves experience, best practice       | Redundant labels, suboptimal heading order                    |
+| Minor    | Improves experience, best practice      | Redundant labels, suboptimal heading order                    |
 
 - Produce a findings table: ID, severity, WCAG criterion, description, location, fix suggestion.
 - Prioritize: critical first, then major. Minor can be batched.

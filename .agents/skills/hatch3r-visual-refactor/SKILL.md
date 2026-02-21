@@ -2,6 +2,7 @@
 name: hatch3r-visual-refactor
 description: UI/UX change workflow matching design, accessibility, and responsiveness requirements. Use when making visual changes, updating components, working on UI issues, or implementing design mockups.
 ---
+
 # Visual Refactor Workflow
 
 ## Quick Start

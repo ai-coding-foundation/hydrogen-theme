@@ -4,6 +4,7 @@ type: rule
 description: TypeScript and file naming conventions for the project
 scope: always
 ---
+
 # Code Standards
 
 - TypeScript strict mode. No `any`. No `@ts-ignore` without a linked issue.

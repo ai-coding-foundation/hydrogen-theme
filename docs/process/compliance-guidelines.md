@@ -25,12 +25,12 @@ The following disclaimer **must** appear on all product pages and marketing mate
 
 ## Approved Language Patterns
 
-| Instead of… | Use… |
-|-------------|------|
-| "Treats insomnia" | "Supports healthy sleep patterns" |
-| "Cures brain fog" | "Supports mental clarity and focus" |
-| "Fixes hormonal imbalance" | "Supports hormonal balance" |
-| "Prevents bone loss" | "Supports bone health" |
+| Instead of…                | Use…                                |
+| -------------------------- | ----------------------------------- |
+| "Treats insomnia"          | "Supports healthy sleep patterns"   |
+| "Cures brain fog"          | "Supports mental clarity and focus" |
+| "Fixes hormonal imbalance" | "Supports hormonal balance"         |
+| "Prevents bone loss"       | "Supports bone health"              |
 
 ---
 

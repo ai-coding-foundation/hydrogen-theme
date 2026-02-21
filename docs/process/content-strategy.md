@@ -14,23 +14,23 @@ Education is part of the store, not a blog afterthought. Education assets double
 
 ## Content Types
 
-| Type | Description | Location | SEO Role |
-|------|-------------|----------|----------|
-| Stage Guide | Stage timeline, quality icons, advisory board quotes ("Hormones 101" equivalent) | `/pages/stage-guide` | Pillar page |
-| Ingredient Glossary | Search + filter by formula, metaobject-driven ingredient details | `/pages/ingredients` | Hub page with long-tail ingredient pages |
-| Research Hub (blog) | Articles filtered by stage + ingredient topic | `/blogs/research` | Supporting content, internal links |
+| Type                | Description                                                                      | Location             | SEO Role                                 |
+| ------------------- | -------------------------------------------------------------------------------- | -------------------- | ---------------------------------------- |
+| Stage Guide         | Stage timeline, quality icons, advisory board quotes ("Hormones 101" equivalent) | `/pages/stage-guide` | Pillar page                              |
+| Ingredient Glossary | Search + filter by formula, metaobject-driven ingredient details                 | `/pages/ingredients` | Hub page with long-tail ingredient pages |
+| Research Hub (blog) | Articles filtered by stage + ingredient topic                                    | `/blogs/research`    | Supporting content, internal links       |
 
 ---
 
 ## SEO Page Targets (Launch)
 
-| Page Type | Count | Examples |
-|-----------|-------|----------|
-| Stage pillar pages | 3 | Per-stage guides |
-| Product pages | 3 | Core SKU pages |
-| Ingredient glossary hub | 1 | `/pages/ingredients` |
-| "Top questions" articles | 3 | Sleep, mood, energy |
-| **Total core pages** | **10** | |
+| Page Type                | Count  | Examples             |
+| ------------------------ | ------ | -------------------- |
+| Stage pillar pages       | 3      | Per-stage guides     |
+| Product pages            | 3      | Core SKU pages       |
+| Ingredient glossary hub  | 1      | `/pages/ingredients` |
+| "Top questions" articles | 3      | Sleep, mood, energy  |
+| **Total core pages**     | **10** |                      |
 
 ---
 

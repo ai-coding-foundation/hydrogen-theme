@@ -3,6 +3,7 @@ id: hatch3r-board-shared
 type: command
 description: Shared context and procedures for all board commands. Provides GitHub context from hatch.json, Projects v2 sync, and tooling directives.
 ---
+
 # Board Shared Reference
 
 Shared context for `hatch3r-board-fill`, `hatch3r-board-pickup`, and related board commands. Read once per run and cache.
@@ -28,9 +29,22 @@ All board commands read project-specific configuration from `/.agents/hatch.json
       "done": null
     },
     "labels": {
-      "types": ["type:bug", "type:feature", "type:refactor", "type:qa", "type:docs", "type:infra"],
+      "types": [
+        "type:bug",
+        "type:feature",
+        "type:refactor",
+        "type:qa",
+        "type:docs",
+        "type:infra"
+      ],
       "executors": ["executor:agent", "executor:human", "executor:hybrid"],
-      "statuses": ["status:triage", "status:ready", "status:in-progress", "status:in-review", "status:blocked"],
+      "statuses": [
+        "status:triage",
+        "status:ready",
+        "status:in-progress",
+        "status:in-review",
+        "status:blocked"
+      ],
       "meta": ["meta:board-overview"]
     },
     "branchConvention": "{type}/{short-description}",
@@ -79,13 +93,13 @@ Use this procedure whenever a status label is set or changes and the board needs
 
 Read the mapping from `board.statusOptions` in `/.agents/hatch.json`:
 
-| Label                | Option ID from hatch.json          |
-| -------------------- | ---------------------------------- |
-| `status:triage`      | `board.statusOptions.backlog`      |
-| `status:ready`       | `board.statusOptions.ready`        |
-| `status:in-progress` | `board.statusOptions.inProgress`   |
-| `status:in-review`   | `board.statusOptions.inReview`     |
-| `status:blocked`     | `board.statusOptions.backlog`      |
+| Label                | Option ID from hatch.json        |
+| -------------------- | -------------------------------- |
+| `status:triage`      | `board.statusOptions.backlog`    |
+| `status:ready`       | `board.statusOptions.ready`      |
+| `status:in-progress` | `board.statusOptions.inProgress` |
+| `status:in-review`   | `board.statusOptions.inReview`   |
+| `status:blocked`     | `board.statusOptions.backlog`    |
 
 **Steps for each issue to sync:**
 

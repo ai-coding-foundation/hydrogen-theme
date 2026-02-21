@@ -14,11 +14,11 @@ The store uses a three-group navigation structure: **Explore**, **Learn**, and *
 
 ## Navigation Structure
 
-| Group | Items | Description |
-|-------|-------|-------------|
-| **Explore** | Cycle (18–40), Transition (40–55), Thrive (50+) | Stage-based product discovery; each links to the corresponding product/collection |
-| **Learn** | Stage Guide, Ingredient Glossary, Research Hub (blog) | Education assets that support conversion and SEO |
-| **Support** | Help Center, Manage Subscription, Contact | Post-purchase and customer service |
+| Group       | Items                                                 | Description                                                                       |
+| ----------- | ----------------------------------------------------- | --------------------------------------------------------------------------------- |
+| **Explore** | Cycle (18–40), Transition (40–55), Thrive (50+)       | Stage-based product discovery; each links to the corresponding product/collection |
+| **Learn**   | Stage Guide, Ingredient Glossary, Research Hub (blog) | Education assets that support conversion and SEO                                  |
+| **Support** | Help Center, Manage Subscription, Contact             | Post-purchase and customer service                                                |
 
 ---
 
@@ -32,10 +32,10 @@ The store uses a three-group navigation structure: **Explore**, **Learn**, and *
 
 ## Shopify Menu Mapping
 
-| Menu Type | Structure |
-|-----------|-----------|
-| **Main menu** | Explore (Cycle, Transition, Thrive) → Learn (Stage Guide, Ingredient Glossary, Research Hub) → Support (Help Center, Manage Subscription, Contact) |
-| **Footer menu** | Mirror main structure or simplified; include Support links prominently |
+| Menu Type       | Structure                                                                                                                                          |
+| --------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Main menu**   | Explore (Cycle, Transition, Thrive) → Learn (Stage Guide, Ingredient Glossary, Research Hub) → Support (Help Center, Manage Subscription, Contact) |
+| **Footer menu** | Mirror main structure or simplified; include Support links prominently                                                                             |
 
 ---
 
