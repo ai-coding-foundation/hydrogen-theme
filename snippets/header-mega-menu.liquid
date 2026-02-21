@@ -1,14 +1,72 @@
 {%- doc -%}
-  Displays a megamenu for the header.
+  Displays a grouped megamenu for the header.
+  Renders top-level links as navigation groups; if a link has children,
+  they are shown in a dropdown panel on hover/focus.
 
   @param {string} shopify_attributes
   @param {linklist} linklist
 {%- enddoc -%}
 
-<nav class="hidden gap-8 lg:flex" {{ shopify_attributes }}>
+<nav class="hidden items-center gap-8 lg:flex" {{ shopify_attributes }}>
   {%- for link in linklist.links -%}
-    <a href="{{ link.url }}">
-      {{ link.title }}
-    </a>
+    {%- if link.links.size > 0 -%}
+      <div class="group relative">
+        <button
+          type="button"
+          class="font-heading text-copy text-primary hover:text-primary/70 inline-flex items-center gap-1 transition"
+          aria-expanded="false"
+          aria-controls="mega-menu-{{ link.handle }}"
+        >
+          {{ link.title }}
+          {%- render 'icon-caret' -%}
+        </button>
+        <div
+          id="mega-menu-{{ link.handle }}"
+          class="border-primary/10 bg-contrast pointer-events-none invisible absolute left-0 top-full z-20 min-w-48 translate-y-2 rounded-lg border px-5 py-4 opacity-0 shadow-lg transition duration-200 group-focus-within:pointer-events-auto group-focus-within:visible group-focus-within:translate-y-0 group-focus-within:opacity-100 group-hover:pointer-events-auto group-hover:visible group-hover:translate-y-0 group-hover:opacity-100"
+          role="menu"
+        >
+          {%- assign parent_lower = link.title | downcase -%}
+          {%- assign handle_lower = link.handle | downcase -%}
+          {%- assign is_explore = false -%}
+          {%- if parent_lower contains 'explore' or handle_lower contains 'explore' -%}
+            {%- assign is_explore = true -%}
+          {%- endif -%}
+          <ul class="grid gap-1">
+            {%- for child in link.links -%}
+              <li role="none">
+                {%- if is_explore -%}
+                  {%- render 'nav-stage-link',
+                    link: child,
+                    link_class: 'block rounded-md px-3 py-2 hover:bg-primary/5',
+                    role: 'menuitem'
+                  -%}
+                {%- else -%}
+                  <a
+                    href="{{ child.url }}"
+                    role="menuitem"
+                    class="text-copy text-primary/80 hover:text-primary hover:bg-primary/5 block rounded-md px-3 py-2 transition"
+                    {% if child.current %}
+                      aria-current="page"
+                    {% endif %}
+                  >
+                    {{ child.title | escape }}
+                  </a>
+                {%- endif -%}
+              </li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      </div>
+    {%- else -%}
+      <a
+        href="{{ link.url }}"
+        class="font-heading text-copy text-primary hover:text-primary/70 transition"
+        {% if link.current %}
+          aria-current="page"
+        {% endif %}
+      >
+        {{ link.title }}
+      </a>
+    {%- endif -%}
   {%- endfor -%}
 </nav>
