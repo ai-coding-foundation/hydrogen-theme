@@ -3,6 +3,7 @@ id: hatch3r-board-pickup
 type: command
 description: Pick up an epic or issue from the GitHub board for development. Handles dependency-aware selection, collision detection, branching, and sub-agent delegation.
 ---
+
 # Board Pickup -- Develop an Epic or Issue from the GitHub Board
 
 Pick up an epic (with all sub-issues), a single sub-issue, or a standalone issue from **{owner}/{repo}** (read from `/.agents/hatch.json` board config) for development. When no specific issue is referenced, auto-picks the next best candidate. Respects dependency order and readiness status. Performs collision detection, creates a branch, then delegates implementation to the appropriate skill.
@@ -223,6 +224,7 @@ For each dependency level, starting at Level 1:
 1. **Spawn one implementer sub-agent per sub-issue in the current level.** Use the Task tool with `subagent_type: "generalPurpose"`. Launch up to 4 sub-agents concurrently (Cursor limit). If the level has more than 4 sub-issues, batch into groups of 4 and await each batch before starting the next.
 
 2. **Each sub-agent prompt must include:**
+
    - The sub-issue number, title, full body, and acceptance criteria.
    - The issue type (bug/feature/refactor/QA) and corresponding hatch3r skill name.
    - Parent epic context (title, goal, related sub-issues at the same level).
@@ -234,6 +236,7 @@ For each dependency level, starting at Level 1:
 3. **Await all sub-agents in the current level.** Collect their structured results (files changed, tests written, issues encountered).
 
 4. **Review sub-agent results:**
+
    - If any sub-agent reports BLOCKED or PARTIAL, **ASK** the user how to proceed (skip, fix manually, retry).
    - If sub-agents modified overlapping files, review for conflicts and resolve before proceeding.
 

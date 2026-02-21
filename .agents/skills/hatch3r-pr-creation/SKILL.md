@@ -2,6 +2,7 @@
 name: hatch3r-pr-creation
 description: Create a pull request following project conventions including branch naming, PR template, checklist, and rollout plan. Use when opening or preparing a pull request, or when the user asks to create a PR.
 ---
+
 # PR Creation Workflow
 
 ## Quick Start
@@ -22,7 +23,7 @@ Branches must follow `{type}/{short-description}`:
 | ----------- | ---------------------------------- | ----------------------------- |
 | `feat/`     | New features                       | `feat/add-user-preferences`   |
 | `fix/`      | Bug fixes                          | `fix/login-validation-bug`    |
-| `refactor/` | Code, logical, or visual refactors  | `refactor/simplify-auth-flow`  |
+| `refactor/` | Code, logical, or visual refactors | `refactor/simplify-auth-flow` |
 | `qa/`       | QA validation or test additions    | `qa/e2e-checkout-flow`        |
 | `docs/`     | Documentation changes              | `docs/update-readme`          |
 | `infra/`    | CI/CD, tooling, infrastructure     | `infra/add-lint-ci-step`      |

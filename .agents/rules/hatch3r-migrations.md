@@ -4,6 +4,7 @@ type: rule
 description: Database migration and schema change patterns for the project
 scope: always
 ---
+
 # Migrations
 
 - Schema changes must be backward-compatible. Add fields with defaults; never remove or rename without migration.

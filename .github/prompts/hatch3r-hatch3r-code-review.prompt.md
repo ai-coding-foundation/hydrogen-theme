@@ -3,6 +3,7 @@ id: hatch3r-code-review
 type: prompt
 description: Review code changes for quality, security, and correctness
 ---
+
 # Code Review
 
 Review the provided code changes for quality, security, and correctness.
@@ -18,6 +19,7 @@ Review the provided code changes for quality, security, and correctness.
 ## Output
 
 Feedback organized by priority:
+
 - **Critical** — must fix before merge
 - **Warning** — should fix, not blocking
 - **Suggestion** — nice to have improvements

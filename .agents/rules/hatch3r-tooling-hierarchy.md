@@ -4,6 +4,7 @@ type: rule
 description: Priority order for tools and knowledge sources
 scope: always
 ---
+
 # Tooling Hierarchy
 
 ## A. GitHub MCP-First (when available)
@@ -11,6 +12,7 @@ scope: always
 **Prefer GitHub MCP tools over `gh` CLI** when the MCP server provides typed tools with structured input/output. Use them as the primary interface for GitHub operations.
 
 **Fallback to `gh` CLI only when:**
+
 - The MCP tool catalog lacks the specific capability.
 - An MCP call fails repeatedly and the CLI provides a viable alternative.
 
@@ -21,6 +23,7 @@ scope: always
 Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific documentation for external libraries and frameworks. This prevents hallucinated APIs and outdated patterns.
 
 **When to use:**
+
 - Working with any external dependency.
 - Verifying API signatures, configuration options, or migration paths.
 - Reviewing code that uses third-party libraries.
@@ -28,6 +31,7 @@ Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific 
 - Debugging errors from external libraries.
 
 **When NOT to use:**
+
 - Internal project specs — use project docs.
 - Internal codebase patterns — use Grep, SemanticSearch, or exploration tools.
 - General programming concepts not tied to a specific library.
@@ -37,6 +41,7 @@ Use documentation MCP (e.g., Context7) to retrieve up-to-date, version-specific 
 Use web search to retrieve current, real-world information not available in project docs or library documentation.
 
 **When to use:**
+
 - Latest security advisories, CVEs, or vulnerability disclosures for dependencies.
 - Breaking changes or deprecations in upcoming dependency versions.
 - Current best practices for architecture patterns, deployment strategies, or tooling.
@@ -44,6 +49,7 @@ Use web search to retrieve current, real-world information not available in proj
 - Comparing alternative approaches or tools with current community consensus.
 
 **When NOT to use:**
+
 - Questions answerable from project specs or codebase exploration.
 - Standard library API questions (use documentation MCP instead).
 - Internal project decisions (use project ADRs).

@@ -25,31 +25,36 @@
 
 ```typescript
 // Storefront API uses public access tokens (safe for client-side)
-const STOREFRONT_ACCESS_TOKEN = 'your-storefront-access-token';
-const SHOP_DOMAIN = 'your-store.myshopify.com';
-const API_VERSION = '2024-10'; // Use latest stable version
+const STOREFRONT_ACCESS_TOKEN = 'your-storefront-access-token'
+const SHOP_DOMAIN = 'your-store.myshopify.com'
+const API_VERSION = '2024-10' // Use latest stable version
 
 // GraphQL endpoint
-const endpoint = `https://${SHOP_DOMAIN}/api/${API_VERSION}/graphql.json`;
+const endpoint = `https://${SHOP_DOMAIN}/api/${API_VERSION}/graphql.json`
 
 // Basic fetch wrapper
-async function storefrontFetch<T>(query: string, variables?: Record<string, unknown>): Promise<T> {
+async function storefrontFetch<T>(
+  query: string,
+  variables?: Record<string, unknown>
+): Promise<T> {
   const response = await fetch(endpoint, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'X-Shopify-Storefront-Access-Token': STOREFRONT_ACCESS_TOKEN,
+      'X-Shopify-Storefront-Access-Token': STOREFRONT_ACCESS_TOKEN
     },
-    body: JSON.stringify({ query, variables }),
-  });
+    body: JSON.stringify({ query, variables })
+  })
 
-  const json = await response.json();
+  const json = await response.json()
 
   if (json.errors) {
-    throw new Error(json.errors.map((e: { message: string }) => e.message).join(', '));
+    throw new Error(
+      json.errors.map((e: { message: string }) => e.message).join(', ')
+    )
   }
 
-  return json.data;
+  return json.data
 }
 ```
 
@@ -67,7 +72,7 @@ const query = `
       edges { node { id title } }
     }
   }
-`;
+`
 
 // Response includes:
 // "extensions": {
@@ -109,18 +114,18 @@ hydrogen-storefront/
 
 ```typescript
 // hydrogen.config.ts
-import {defineConfig} from '@shopify/hydrogen/config';
+import { defineConfig } from '@shopify/hydrogen/config'
 
 export default defineConfig({
   shopify: {
     storeDomain: 'your-store.myshopify.com',
     storefrontToken: process.env.PUBLIC_STOREFRONT_API_TOKEN!,
-    storefrontApiVersion: '2024-10',
+    storefrontApiVersion: '2024-10'
   },
   session: {
-    storage: 'cookie', // or 'memory' for development
-  },
-});
+    storage: 'cookie' // or 'memory' for development
+  }
+})
 ```
 
 ### Route with Data Loading
@@ -427,7 +432,7 @@ const CREATE_CART = `#graphql
       }
     }
   }
-`;
+`
 
 // Add to cart
 const ADD_TO_CART = `#graphql
@@ -443,7 +448,7 @@ const ADD_TO_CART = `#graphql
       }
     }
   }
-`;
+`
 
 // Update cart line
 const UPDATE_CART_LINES = `#graphql
@@ -459,7 +464,7 @@ const UPDATE_CART_LINES = `#graphql
       }
     }
   }
-`;
+`
 
 // Remove from cart
 const REMOVE_FROM_CART = `#graphql
@@ -475,7 +480,7 @@ const REMOVE_FROM_CART = `#graphql
       }
     }
   }
-`;
+`
 
 // Cart fragment for consistent data
 const CART_FRAGMENT = `#graphql
@@ -536,7 +541,7 @@ const CART_FRAGMENT = `#graphql
       applicable
     }
   }
-`;
+`
 ```
 
 ---
@@ -561,7 +566,7 @@ const CUSTOMER_LOGIN = `#graphql
       }
     }
   }
-`;
+`
 
 // Get customer with token
 const GET_CUSTOMER = `#graphql
@@ -618,7 +623,7 @@ const GET_CUSTOMER = `#graphql
     zip
     phone
   }
-`;
+`
 
 // Customer registration
 const CUSTOMER_CREATE = `#graphql
@@ -637,7 +642,7 @@ const CUSTOMER_CREATE = `#graphql
       }
     }
   }
-`;
+`
 ```
 
 ---
@@ -663,7 +668,7 @@ const LOCALIZED_PRODUCTS = `#graphql
       }
     }
   }
-`;
+`
 
 // Get available markets
 const GET_LOCALIZATION = `#graphql
@@ -696,39 +701,39 @@ const GET_LOCALIZATION = `#graphql
       }
     }
   }
-`;
+`
 ```
 
 ### Hydrogen Localization
 
 ```typescript
 // app/routes/($locale).products._index.tsx
-import {type LoaderFunctionArgs} from '@shopify/remix-oxygen';
+import { type LoaderFunctionArgs } from '@shopify/remix-oxygen'
 
-export async function loader({params, context}: LoaderFunctionArgs) {
-  const {locale} = params;
-  const {storefront} = context;
+export async function loader({ params, context }: LoaderFunctionArgs) {
+  const { locale } = params
+  const { storefront } = context
 
   // Storefront client automatically handles locale from route
-  const {products} = await storefront.query(PRODUCTS_QUERY, {
+  const { products } = await storefront.query(PRODUCTS_QUERY, {
     variables: {
       country: storefront.i18n.country,
-      language: storefront.i18n.language,
-    },
-  });
+      language: storefront.i18n.language
+    }
+  })
 
-  return json({products});
+  return json({ products })
 }
 
 // server.ts - Configure i18n
 const i18n = {
-  default: {language: 'EN', country: 'US'},
+  default: { language: 'EN', country: 'US' },
   subfolders: [
-    {language: 'FR', country: 'FR', pathPrefix: '/fr-fr'},
-    {language: 'DE', country: 'DE', pathPrefix: '/de-de'},
-    {language: 'EN', country: 'GB', pathPrefix: '/en-gb'},
-  ],
-};
+    { language: 'FR', country: 'FR', pathPrefix: '/fr-fr' },
+    { language: 'DE', country: 'DE', pathPrefix: '/de-de' },
+    { language: 'EN', country: 'GB', pathPrefix: '/en-gb' }
+  ]
+}
 ```
 
 ---
@@ -849,7 +854,7 @@ const BAD_QUERY = `#graphql
       }
     }
   }
-`;
+`
 
 // GOOD: Fetch only what you need
 const GOOD_QUERY = `#graphql
@@ -873,7 +878,7 @@ const GOOD_QUERY = `#graphql
       }
     }
   }
-`;
+`
 
 // Use fragments for reusability and consistency
 const PRODUCT_CARD_FRAGMENT = `#graphql
@@ -897,32 +902,32 @@ const PRODUCT_CARD_FRAGMENT = `#graphql
       }
     }
   }
-`;
+`
 ```
 
 ### Caching Strategies
 
 ```typescript
 // Hydrogen caching
-export async function loader({context}: LoaderFunctionArgs) {
-  const {storefront} = context;
+export async function loader({ context }: LoaderFunctionArgs) {
+  const { storefront } = context
 
   // Short cache for frequently changing data
-  const {products} = await storefront.query(PRODUCTS_QUERY, {
-    cache: storefront.CacheShort(), // ~1 minute
-  });
+  const { products } = await storefront.query(PRODUCTS_QUERY, {
+    cache: storefront.CacheShort() // ~1 minute
+  })
 
   // Long cache for static content
-  const {menu} = await storefront.query(MENU_QUERY, {
-    cache: storefront.CacheLong(), // ~1 hour
-  });
+  const { menu } = await storefront.query(MENU_QUERY, {
+    cache: storefront.CacheLong() // ~1 hour
+  })
 
   // No cache for user-specific data
-  const {customer} = await storefront.query(CUSTOMER_QUERY, {
-    cache: storefront.CacheNone(),
-  });
+  const { customer } = await storefront.query(CUSTOMER_QUERY, {
+    cache: storefront.CacheNone()
+  })
 
-  return json({products, menu, customer});
+  return json({ products, menu, customer })
 }
 ```
 

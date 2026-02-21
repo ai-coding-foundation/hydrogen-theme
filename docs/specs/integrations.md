@@ -8,12 +8,12 @@ This spec defines the core third-party integrations for the EVOHERA Shopify stor
 
 ## Integration Stack
 
-| Category | Tool | Purpose | Key Integration Points |
-|----------|------|---------|-------------------------|
-| **Email/SMS** | Klaviyo | Lifecycle flows, subscription reminders, stage-based segmentation | Welcome series, subscription reminder flows, stage-based content, abandoned cart |
-| **Subscriptions** | Recharge | Quarterly/monthly subscription management | Subscription selector on PDP, Manage Subscription portal, recurring billing |
-| **Support** | Gorgias | Helpdesk, subscription management portal | Help Center, Manage Subscription, contact flows, ticket routing |
-| **Reviews** | Okendo | Product reviews, UGC, social proof on PDP | PDP reviews block, UGC display, review request flows |
+| Category          | Tool     | Purpose                                                           | Key Integration Points                                                           |
+| ----------------- | -------- | ----------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| **Email/SMS**     | Klaviyo  | Lifecycle flows, subscription reminders, stage-based segmentation | Welcome series, subscription reminder flows, stage-based content, abandoned cart |
+| **Subscriptions** | Recharge | Quarterly/monthly subscription management                         | Subscription selector on PDP, Manage Subscription portal, recurring billing      |
+| **Support**       | Gorgias  | Helpdesk, subscription management portal                          | Help Center, Manage Subscription, contact flows, ticket routing                  |
+| **Reviews**       | Okendo   | Product reviews, UGC, social proof on PDP                         | PDP reviews block, UGC display, review request flows                             |
 
 ---
 

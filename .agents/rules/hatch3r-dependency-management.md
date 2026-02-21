@@ -4,6 +4,7 @@ type: rule
 description: Rules for managing npm dependencies in the project
 scope: always
 ---
+
 # Dependency Management
 
 - Always commit `package-lock.json`. Never use `npm install --no-save`.

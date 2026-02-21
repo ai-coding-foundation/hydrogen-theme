@@ -1,0 +1,47 @@
+{%- doc -%}
+  Renders a stage-aware navigation link with a colored dot indicator.
+  Detects Cycle, Transition, or Thrive from the link title (case-insensitive)
+  and applies the corresponding brand color to a small dot before the text.
+
+  Works for both desktop mega-menu and mobile drawer contexts.
+
+  @param {link} link - Shopify link object
+  @param {string} [link_class] - Additional CSS classes for the anchor (e.g. for mega-menu vs drawer)
+  @param {string} [role] - ARIA role for the anchor (e.g. 'menuitem' when inside a menu)
+{%- enddoc -%}
+
+{%- liquid
+  assign title_lower = link.title | downcase
+  assign stage_class = ''
+
+  if title_lower contains 'cycle'
+    assign stage_class = 'bg-stage-cycle'
+  elsif title_lower contains 'transition'
+    assign stage_class = 'bg-stage-transition'
+  elsif title_lower contains 'thrive'
+    assign stage_class = 'bg-stage-thrive'
+  endif
+
+  assign base_class = 'text-copy text-primary/80 hover:text-primary inline-flex items-center gap-2 transition'
+  if link_class
+    assign anchor_class = base_class | append: ' ' | append: link_class
+  else
+    assign anchor_class = base_class
+  endif
+-%}
+
+<a
+  href="{{ link.url }}"
+  class="{{ anchor_class }}"
+  {% if role %}
+    role="{{ role }}"
+  {% endif %}
+  {% if link.current %}
+    aria-current="page"
+  {% endif %}
+>
+  {%- if stage_class != '' -%}
+    <span class="{{ stage_class }} size-2 shrink-0 rounded-full" aria-hidden="true"></span>
+  {%- endif -%}
+  {{ link.title | escape }}
+</a>

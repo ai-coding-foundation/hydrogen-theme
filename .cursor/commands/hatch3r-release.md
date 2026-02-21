@@ -3,6 +3,7 @@ id: hatch3r-release
 type: command
 description: Cut a versioned release with changelog, quality verification, and deploy verification
 ---
+
 # Release — Cut a Versioned Release with Changelog
 
 Cut a versioned release for **{owner}/{repo}** with changelog generation, quality verification, version bump, git tagging, GitHub release creation, and optional deploy verification. Follows semantic versioning (major/minor/patch) based on merged PR classification.

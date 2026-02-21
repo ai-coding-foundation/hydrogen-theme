@@ -20,11 +20,11 @@ Default the PDP purchase selector to quarterly subscription with visible savings
 
 ## Alternatives Considered
 
-| Option | Pros | Cons |
-|--------|------|------|
-| One-time default + subscription upsell | Lower barrier to first purchase | Low subscription conversion, lower LTV |
-| Monthly default | Familiar subscription model | "Too much product" churn, doesn't match 90-day behavior |
-| Membership model (flat fee + discounts) | Predictable revenue | Complex to implement, unfamiliar for supplements |
+| Option                                  | Pros                            | Cons                                                    |
+| --------------------------------------- | ------------------------------- | ------------------------------------------------------- |
+| One-time default + subscription upsell  | Lower barrier to first purchase | Low subscription conversion, lower LTV                  |
+| Monthly default                         | Familiar subscription model     | "Too much product" churn, doesn't match 90-day behavior |
+| Membership model (flat fee + discounts) | Predictable revenue             | Complex to implement, unfamiliar for supplements        |
 
 ## Consequences
 

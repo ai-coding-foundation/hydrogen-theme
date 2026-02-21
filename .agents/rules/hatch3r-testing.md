@@ -4,6 +4,7 @@ type: rule
 description: Test standards and conventions for the project
 scope: always
 ---
+
 # Testing Standards
 
 - Unit tests: project test runner. Integration: test runner + emulators/mocks. E2E: browser automation.

@@ -3,6 +3,7 @@ id: hatch3r-board-init
 type: command
 description: Initialize a GitHub Projects V2 board with hatch3r's label taxonomy, status fields, and board structure. Optionally migrate issues from an existing project.
 ---
+
 # Board Init -- Bootstrap a GitHub Projects V2 Board
 
 Initialize a new or existing GitHub Projects V2 board for **{owner}/{repo}** (read from `/.agents/hatch.json` board config). Sets up status fields, creates the full hatch3r label taxonomy, optionally migrates issues from another project, and writes all IDs back to `/.agents/hatch.json` so subsequent board commands work out of the box. AI proposes configuration; user confirms before any mutation.
@@ -39,6 +40,7 @@ Update the in-memory config with the provided values.
 ### Step 2: Choose Mode
 
 **ASK:** "How would you like to set up the Projects V2 board?
+
 - **A** — Create a new GitHub Projects V2 board
 - **B** — Connect to an existing project (provide the project number)"
 
@@ -52,16 +54,33 @@ Record the user's choice and, for option B, the project number.
 
 1. Fetch the repository node ID:
    ```graphql
-   query { repository(owner: "{owner}", name: "{repo}") { id } }
+   query {
+     repository(owner: "{owner}", name: "{repo}") {
+       id
+     }
+   }
    ```
    Use the GitHub MCP `graphql` tool with `owner: {board.owner}`, `repo: {board.repo}`.
 2. Create the project:
    ```graphql
-   mutation { createProjectV2(input: { ownerId: "<repo_owner_node_id>", title: "{repo} Board" }) { projectV2 { id number } } }
+   mutation {
+     createProjectV2(
+       input: { ownerId: "<repo_owner_node_id>", title: "{repo} Board" }
+     ) {
+       projectV2 {
+         id
+         number
+       }
+     }
+   }
    ```
    The `ownerId` must be the **owner's** node ID (org or user), not the repository node ID. Fetch the owner node ID first if needed:
    ```graphql
-   query { repositoryOwner(login: "{owner}") { id } }
+   query {
+     repositoryOwner(login: "{owner}") {
+       id
+     }
+   }
    ```
 3. Capture the project `id` (node ID) and `number` from the response.
 
@@ -86,7 +105,12 @@ Record the user's choice and, for option B, the project number.
          fields(first: 50) {
            nodes {
              ... on ProjectV2SingleSelectField {
-               id name options { id name }
+               id
+               name
+               options {
+                 id
+                 name
+               }
              }
            }
          }
@@ -120,26 +144,26 @@ Status Field: {fieldId}
 1. Read the label taxonomy from `board.labels` in `/.agents/hatch.json`.
 2. If labels are not defined or empty, use these defaults:
 
-| Category  | Labels |
-|-----------|--------|
-| Type      | `type:bug`, `type:feature`, `type:refactor`, `type:qa`, `type:docs`, `type:infra` |
-| Executor  | `executor:agent`, `executor:human`, `executor:hybrid` |
-| Status    | `status:triage`, `status:ready`, `status:in-progress`, `status:in-review`, `status:blocked` |
-| Priority  | `priority:p0`, `priority:p1`, `priority:p2`, `priority:p3` |
-| Risk      | `risk:low`, `risk:med`, `risk:high` |
-| Meta      | `meta:board-overview`, `has-dependencies` |
+| Category | Labels                                                                                      |
+| -------- | ------------------------------------------------------------------------------------------- |
+| Type     | `type:bug`, `type:feature`, `type:refactor`, `type:qa`, `type:docs`, `type:infra`           |
+| Executor | `executor:agent`, `executor:human`, `executor:hybrid`                                       |
+| Status   | `status:triage`, `status:ready`, `status:in-progress`, `status:in-review`, `status:blocked` |
+| Priority | `priority:p0`, `priority:p1`, `priority:p2`, `priority:p3`                                  |
+| Risk     | `risk:low`, `risk:med`, `risk:high`                                                         |
+| Meta     | `meta:board-overview`, `has-dependencies`                                                   |
 
 3. For each label, check if it already exists on the repository using `get_label` (or `list_labels` to fetch all at once). Create only missing labels via `create_label`.
 4. Use consistent colors per category:
 
-| Category | Color scheme | Hex examples |
-|----------|-------------|--------------|
-| `type:*` | Blue shades | `#0052CC`, `#1D76DB`, `#5319E7`, `#0075CA`, `#006B75`, `#0E8A16` |
-| `executor:*` | Green shades | `#0E8A16`, `#2EA44F`, `#7CFC00` |
-| `status:*` | Yellow/Orange shades | `#FBCA04`, `#F9D0C4`, `#E4E669`, `#FFA500`, `#D93F0B` |
-| `priority:*` | Red shades (p0 darkest) | `#B60205`, `#D93F0B`, `#E99695`, `#F9D0C4` |
-| `risk:*` | Purple shades | `#5319E7`, `#7B68EE`, `#D4C5F9` |
-| `meta:*` / `has-dependencies` | Gray | `#BFD4F2`, `#C5DEF5` |
+| Category                      | Color scheme            | Hex examples                                                     |
+| ----------------------------- | ----------------------- | ---------------------------------------------------------------- |
+| `type:*`                      | Blue shades             | `#0052CC`, `#1D76DB`, `#5319E7`, `#0075CA`, `#006B75`, `#0E8A16` |
+| `executor:*`                  | Green shades            | `#0E8A16`, `#2EA44F`, `#7CFC00`                                  |
+| `status:*`                    | Yellow/Orange shades    | `#FBCA04`, `#F9D0C4`, `#E4E669`, `#FFA500`, `#D93F0B`            |
+| `priority:*`                  | Red shades (p0 darkest) | `#B60205`, `#D93F0B`, `#E99695`, `#F9D0C4`                       |
+| `risk:*`                      | Purple shades           | `#5319E7`, `#7B68EE`, `#D4C5F9`                                  |
+| `meta:*` / `has-dependencies` | Gray                    | `#BFD4F2`, `#C5DEF5`                                             |
 
 5. Present a summary of created vs. existing labels:
 
@@ -185,7 +209,15 @@ Labels:
    Paginate until all items are retrieved. Resolve the source project node ID from the project number first (same approach as Step 3 Option B).
 2. For each item with linked issue content, add it to the new project board via the `addProjectV2ItemById` mutation:
    ```graphql
-   mutation { addProjectV2ItemById(input: { projectId: "<new_project_id>", contentId: "<issue_node_id>" }) { item { id } } }
+   mutation {
+     addProjectV2ItemById(
+       input: { projectId: "<new_project_id>", contentId: "<issue_node_id>" }
+     ) {
+       item {
+         id
+       }
+     }
+   }
    ```
 3. Map the source project's status to the new project's status options (best-effort string matching: exact match first, then case-insensitive, then substring). Update each migrated item's status on the new board using the `updateProjectV2ItemFieldValue` mutation.
 4. Present a migration summary:
@@ -208,6 +240,7 @@ Migration Summary:
 ### Step 7: Write Configuration Back
 
 1. Prepare the updated `board` config with all captured IDs:
+
    - `board.owner` — set if it was missing
    - `board.repo` — set if it was missing
    - `board.projectNumber` — from the created/connected project
@@ -246,13 +279,13 @@ Migration Summary:
 
 ## Current Sprint
 
-| Status | Count |
-|--------|-------|
-| Backlog | 0 |
-| Ready | 0 |
-| In Progress | 0 |
-| In Review | 0 |
-| Done | 0 |
+| Status      | Count |
+| ----------- | ----- |
+| Backlog     | 0     |
+| Ready       | 0     |
+| In Progress | 0     |
+| In Review   | 0     |
+| Done        | 0     |
 
 ## Labels
 
@@ -260,7 +293,7 @@ All labels from the hatch3r taxonomy have been configured.
 
 ---
 
-*This issue is auto-maintained by the board management commands. Do not close.*
+_This issue is auto-maintained by the board management commands. Do not close._
 ```
 
 2. Add the issue to the project board and set its status to **Backlog** using the Projects v2 Sync Procedure from `hatch3r-board-shared`.

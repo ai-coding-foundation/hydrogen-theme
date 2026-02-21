@@ -3,6 +3,7 @@ id: hatch3r-pr-description
 type: prompt
 description: Generate a pull request description from staged changes
 ---
+
 # PR Description
 
 Generate a pull request description for the current changes.

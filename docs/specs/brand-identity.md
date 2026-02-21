@@ -17,12 +17,12 @@ that replaces a complicated pill routine with one delicious drink—
 
 ## Messaging Pillars
 
-| # | Pillar | Description |
-|---|--------|-------------|
-| 1 | **Stage-specific by design** | 3 stages, 3 formulas—users self-identify and get the right formula |
-| 2 | **Clinically-dosed, not "sprinkled"** | Education-first proof; transparent about what's inside and why |
-| 3 | **Enjoyable daily consistency** | Flavor-first ritual; replaces pill fatigue with a drink worth anticipating |
-| 4 | **Safety & quality** | cGMP, third-party testing, transparent sourcing |
+| #   | Pillar                                | Description                                                                |
+| --- | ------------------------------------- | -------------------------------------------------------------------------- |
+| 1   | **Stage-specific by design**          | 3 stages, 3 formulas—users self-identify and get the right formula         |
+| 2   | **Clinically-dosed, not "sprinkled"** | Education-first proof; transparent about what's inside and why             |
+| 3   | **Enjoyable daily consistency**       | Flavor-first ritual; replaces pill fatigue with a drink worth anticipating |
+| 4   | **Safety & quality**                  | cGMP, third-party testing, transparent sourcing                            |
 
 ---
 
@@ -41,13 +41,13 @@ that replaces a complicated pill routine with one delicious drink—
 
 ### Palette System
 
-| Stage | Hero Color |
-|-------|------------|
-| **Cycle** | Cool green |
-| **Transition** | Deep red |
-| **Thrive** | Midnight violet |
+| Stage          | Hero Color      |
+| -------------- | --------------- |
+| **Cycle**      | Cool green      |
+| **Transition** | Deep red        |
+| **Thrive**     | Midnight violet |
 
-*One neutral base + one hero color per lifestage.*
+_One neutral base + one hero color per lifestage._
 
 ### Photography
 
@@ -65,12 +65,12 @@ that replaces a complicated pill routine with one delicious drink—
 
 ## Brand Voice
 
-| Attribute | Description |
-|-----------|-------------|
-| **Tone** | Calm, direct, science-literate |
+| Attribute     | Description                                                                     |
+| ------------- | ------------------------------------------------------------------------------- |
+| **Tone**      | Calm, direct, science-literate                                                  |
 | **Structure** | "Here's what's inside / here's why / here's what to expect" (timeline language) |
-| **Avoid** | Never cute; never clinical-cold |
-| **Target** | Credible warmth |
+| **Avoid**     | Never cute; never clinical-cold                                                 |
+| **Target**    | Credible warmth                                                                 |
 
 ---
 

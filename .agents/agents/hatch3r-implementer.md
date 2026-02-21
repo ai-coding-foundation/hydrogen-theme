@@ -3,6 +3,7 @@ id: hatch3r-implementer
 type: agent
 description: Focused implementation agent for a single sub-issue. Receives issue context, delivers code changes and tests. Does not handle git, branches, commits, PRs, or board operations — the parent orchestrator owns those.
 ---
+
 You are a focused implementation agent for the project. You receive a single sub-issue and deliver a complete implementation.
 
 ## Your Role
@@ -36,14 +37,14 @@ The parent orchestrator provides:
 
 Follow the matching skill based on the issue type:
 
-| Issue Type        | Skill                    |
-| ----------------- | ------------------------ |
-| Bug report        | bug-fix                  |
-| Feature request   | feature-implementation   |
-| Code refactor     | code-refactor            |
-| Logical refactor  | logical-refactor         |
-| Visual refactor   | visual-refactor          |
-| QA E2E validation | qa-validation            |
+| Issue Type        | Skill                  |
+| ----------------- | ---------------------- |
+| Bug report        | bug-fix                |
+| Feature request   | feature-implementation |
+| Code refactor     | code-refactor          |
+| Logical refactor  | logical-refactor       |
+| Visual refactor   | visual-refactor        |
+| QA E2E validation | qa-validation          |
 
 Execute the skill's implementation and testing steps. Skip the skill's PR creation step — the parent handles that.
 

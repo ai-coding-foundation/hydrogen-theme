@@ -20,12 +20,12 @@ Adopt four core integrations: Klaviyo (email/SMS), Recharge (subscriptions), Gor
 
 ## Alternatives Considered
 
-| Category | Chosen | Alternative | Pros of Chosen | Cons of Alternative |
-|----------|--------|-------------|----------------|---------------------|
-| Email/SMS | Klaviyo | Mailchimp | Superior Shopify integration, subscription event triggers, stage-based segmentation | Mailchimp cheaper but weaker Shopify flows |
-| Subscriptions | Recharge | Bold Subscriptions | Market leader for Shopify subscriptions, checkout integration | Bold has fewer features, smaller ecosystem |
-| Support | Gorgias | Zendesk | Purpose-built for Shopify, native order/subscription sidebar | Zendesk more general, requires custom integration |
-| Reviews | Okendo | Yotpo | Strong UGC + attributes for supplements | Yotpo more expensive at scale, broader feature set |
+| Category      | Chosen   | Alternative        | Pros of Chosen                                                                      | Cons of Alternative                                |
+| ------------- | -------- | ------------------ | ----------------------------------------------------------------------------------- | -------------------------------------------------- |
+| Email/SMS     | Klaviyo  | Mailchimp          | Superior Shopify integration, subscription event triggers, stage-based segmentation | Mailchimp cheaper but weaker Shopify flows         |
+| Subscriptions | Recharge | Bold Subscriptions | Market leader for Shopify subscriptions, checkout integration                       | Bold has fewer features, smaller ecosystem         |
+| Support       | Gorgias  | Zendesk            | Purpose-built for Shopify, native order/subscription sidebar                        | Zendesk more general, requires custom integration  |
+| Reviews       | Okendo   | Yotpo              | Strong UGC + attributes for supplements                                             | Yotpo more expensive at scale, broader feature set |
 
 ## Consequences
 

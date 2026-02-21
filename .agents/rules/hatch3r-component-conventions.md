@@ -4,6 +4,7 @@ type: rule
 description: Component conventions for accessibility, design tokens, and responsive patterns
 scope: always
 ---
+
 # Component Conventions
 
 ## Structure

@@ -2,6 +2,7 @@
 name: hatch3r-perf-audit
 description: Profile and optimize application performance against defined budgets. Use when investigating performance issues, auditing performance budgets, or optimizing hot paths.
 ---
+
 # Performance Audit Workflow
 
 ## Quick Start

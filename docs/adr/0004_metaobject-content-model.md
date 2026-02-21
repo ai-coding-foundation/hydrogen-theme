@@ -20,11 +20,11 @@ Use Shopify Metaobjects for five content types: Ingredients, Clinical Callouts, 
 
 ## Alternatives Considered
 
-| Option | Pros | Cons |
-|--------|------|------|
-| Hardcoded Liquid sections | Simple, no setup | Duplication, non-developer unfriendly, hard to maintain |
-| Blog/article-based content | Built-in Shopify feature, SEO-friendly | Limited structured fields, poor reusability across pages |
-| External CMS (Contentful, Sanity) | Powerful content modeling | Added complexity, cost, latency, extra integration |
+| Option                            | Pros                                   | Cons                                                     |
+| --------------------------------- | -------------------------------------- | -------------------------------------------------------- |
+| Hardcoded Liquid sections         | Simple, no setup                       | Duplication, non-developer unfriendly, hard to maintain  |
+| Blog/article-based content        | Built-in Shopify feature, SEO-friendly | Limited structured fields, poor reusability across pages |
+| External CMS (Contentful, Sanity) | Powerful content modeling              | Added complexity, cost, latency, extra integration       |
 
 ## Consequences
 

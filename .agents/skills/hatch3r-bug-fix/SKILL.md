@@ -2,6 +2,7 @@
 name: hatch3r-bug-fix
 description: Step-by-step bug fix workflow. Diagnose root cause, implement minimal fix, write regression test. Use when fixing bugs, working on bug report issues, or when the user mentions a bug.
 ---
+
 # Bug Fix Workflow
 
 ## Quick Start

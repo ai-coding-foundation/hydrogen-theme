@@ -1,13 +1,8 @@
 {
   "version": "1.0.0",
   "hatch3rVersion": "0.1.0",
-  "tools": [
-    "cursor",
-    "copilot"
-  ],
-  "presets": [
-    "default"
-  ],
+  "tools": ["cursor", "copilot"],
+  "presets": ["default"],
   "features": {
     "agents": true,
     "skills": true,
@@ -19,10 +14,7 @@
     "githubAgents": true
   },
   "mcp": {
-    "servers": [
-      "github",
-      "context7"
-    ]
+    "servers": ["github", "context7"]
   },
   "packs": [],
   "managedFiles": [
@@ -100,11 +92,7 @@
         "type:docs",
         "type:infra"
       ],
-      "executors": [
-        "executor:agent",
-        "executor:human",
-        "executor:hybrid"
-      ],
+      "executors": ["executor:agent", "executor:human", "executor:hybrid"],
       "statuses": [
         "status:triage",
         "status:ready",
@@ -112,9 +100,7 @@
         "status:in-review",
         "status:blocked"
       ],
-      "meta": [
-        "meta:board-overview"
-      ]
+      "meta": ["meta:board-overview"]
     },
     "branchConvention": "{type}/{short-description}",
     "areas": []

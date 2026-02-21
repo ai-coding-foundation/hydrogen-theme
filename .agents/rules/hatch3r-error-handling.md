@@ -4,6 +4,7 @@ type: rule
 description: Error handling patterns and conventions for the project
 scope: always
 ---
+
 # Error Handling
 
 - Define a structured error hierarchy: base error class with `code`, `message`, `cause`.

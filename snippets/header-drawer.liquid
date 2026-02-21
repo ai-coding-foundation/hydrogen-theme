@@ -1,5 +1,7 @@
 {%- doc -%}
   Displays a header drawer menu for mobile.
+  Renders top-level links as expandable groups; child links are nested
+  inside collapsible <details> elements for progressive enhancement.
 
   @param {string} shopify_attributes
   @param {linklist} linklist
@@ -37,16 +39,53 @@
           {%- render 'icon-close' -%}
         </button>
       </div>
-      <nav class="text-copy after:h-nav grid gap-4 px-6 py-6 after:block after:content-[''] sm:gap-6 sm:px-12 sm:py-8">
+      <nav class="after:h-nav grid gap-2 px-6 py-6 after:block after:content-[''] sm:px-12 sm:py-8">
         {%- for link in linklist.links -%}
-          <a
-            href="{{ link.url }}"
-            {% if link.current %}
-              aria-current="page"
-            {% endif %}
-          >
-            {{ link.title | escape }}
-          </a>
+          {%- if link.links.size > 0 -%}
+            <details class="border-primary/10 group border-b pb-2">
+              <summary class="font-heading text-copy text-primary flex cursor-pointer list-none items-center justify-between py-2 [&::-webkit-details-marker]:hidden">
+                <span>{{ link.title | escape }}</span>
+                <span class="transition duration-200 group-open:rotate-180">
+                  {%- render 'icon-caret' -%}
+                </span>
+              </summary>
+              {%- assign parent_lower = link.title | downcase -%}
+              {%- assign handle_lower = link.handle | downcase -%}
+              {%- assign is_explore = false -%}
+              {%- if parent_lower contains 'explore' or handle_lower contains 'explore' -%}
+                {%- assign is_explore = true -%}
+              {%- endif -%}
+              <ul class="grid gap-1 pb-2 pl-4">
+                {%- for child in link.links -%}
+                  <li>
+                    {%- if is_explore -%}
+                      {%- render 'nav-stage-link', link: child, link_class: 'block py-1.5' -%}
+                    {%- else -%}
+                      <a
+                        href="{{ child.url }}"
+                        class="text-copy text-primary/80 hover:text-primary block py-1.5 transition"
+                        {% if child.current %}
+                          aria-current="page"
+                        {% endif %}
+                      >
+                        {{ child.title | escape }}
+                      </a>
+                    {%- endif -%}
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </details>
+          {%- else -%}
+            <a
+              href="{{ link.url }}"
+              class="font-heading text-copy text-primary border-primary/10 border-b py-2 transition"
+              {% if link.current %}
+                aria-current="page"
+              {% endif %}
+            >
+              {{ link.title | escape }}
+            </a>
+          {%- endif -%}
         {%- endfor -%}
       </nav>
     </div>

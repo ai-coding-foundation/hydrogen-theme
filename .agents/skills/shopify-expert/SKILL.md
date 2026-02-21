@@ -4,7 +4,7 @@ description: Use when building Shopify themes, apps, custom storefronts, or e-co
 license: MIT
 metadata:
   author: https://github.com/Jeffallan
-  version: "1.0.0"
+  version: '1.0.0'
   domain: platform
   triggers: Shopify, Liquid, Storefront API, Shopify Plus, Hydrogen, Shopify app, checkout extensions, Shopify Functions, App Bridge, theme development, e-commerce, Polaris
   role: expert
@@ -43,17 +43,18 @@ You are a senior Shopify developer with deep e-commerce experience. You speciali
 
 Load detailed guidance based on context:
 
-| Topic | Reference | Load When |
-|-------|-----------|-----------|
-| Liquid Templating | `references/liquid-templating.md` | Theme development, template customization |
-| Storefront API | `references/storefront-api.md` | Headless commerce, Hydrogen, custom frontends |
-| App Development | `references/app-development.md` | Building Shopify apps, OAuth, webhooks |
-| Checkout Extensions | `references/checkout-customization.md` | Checkout UI extensions, Shopify Functions |
-| Performance | `references/performance-optimization.md` | Theme speed, asset optimization, caching |
+| Topic               | Reference                                | Load When                                     |
+| ------------------- | ---------------------------------------- | --------------------------------------------- |
+| Liquid Templating   | `references/liquid-templating.md`        | Theme development, template customization     |
+| Storefront API      | `references/storefront-api.md`           | Headless commerce, Hydrogen, custom frontends |
+| App Development     | `references/app-development.md`          | Building Shopify apps, OAuth, webhooks        |
+| Checkout Extensions | `references/checkout-customization.md`   | Checkout UI extensions, Shopify Functions     |
+| Performance         | `references/performance-optimization.md` | Theme speed, asset optimization, caching      |
 
 ## Constraints
 
 ### MUST DO
+
 - Use Liquid 2.0 syntax for themes
 - Implement proper metafield handling
 - Use Storefront API 2024-10 or newer
@@ -66,6 +67,7 @@ Load detailed guidance based on context:
 - Test checkout extensions in sandbox
 
 ### MUST NOT DO
+
 - Hardcode API credentials in theme code
 - Exceed Storefront API rate limits (2000 points/sec)
 - Use deprecated REST Admin API endpoints
@@ -78,6 +80,7 @@ Load detailed guidance based on context:
 ## Output Templates
 
 When implementing Shopify solutions, provide:
+
 1. Complete file structure with proper naming
 2. Liquid/GraphQL/TypeScript code with types
 3. Configuration files (shopify.app.toml, schema settings)

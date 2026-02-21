@@ -3,6 +3,7 @@ id: hatch3r-bug-triage
 type: prompt
 description: Triage a bug report and suggest investigation steps
 ---
+
 # Bug Triage
 
 Triage the described bug and produce an investigation plan.

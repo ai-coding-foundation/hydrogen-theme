@@ -68,11 +68,11 @@ The theme uses an Astro-inspired island architecture for progressive enhancement
 
 ### Hydration Directives
 
-| Directive        | Description                                                    |
-| :--------------- | :------------------------------------------------------------- |
-| `client:idle`    | Hydrate when the main thread is free (`requestIdleCallback`)   |
+| Directive        | Description                                                           |
+| :--------------- | :-------------------------------------------------------------------- |
+| `client:idle`    | Hydrate when the main thread is free (`requestIdleCallback`)          |
 | `client:visible` | Hydrate when the element enters the viewport (`IntersectionObserver`) |
-| `client:media`   | Hydrate when a media query matches (`matchMedia`)              |
+| `client:media`   | Hydrate when a media query matches (`matchMedia`)                     |
 
 Usage in Liquid templates:
 
@@ -89,12 +89,12 @@ Usage in Liquid templates:
 
 ### Islands
 
-| Category | Components |
-| :------- | :--------- |
-| Cart     | `cart-drawer`, `cart-drawer-items`, `cart-items`, `cart-note`, `cart-remove-button` |
-| Product  | `product-form`, `product-recommendations`, `variant-radios`, `variant-selects` |
+| Category | Components                                                                                |
+| :------- | :---------------------------------------------------------------------------------------- |
+| Cart     | `cart-drawer`, `cart-drawer-items`, `cart-items`, `cart-note`, `cart-remove-button`       |
+| Product  | `product-form`, `product-recommendations`, `variant-radios`, `variant-selects`            |
 | UI       | `header-drawer`, `sticky-header`, `quantity-input`, `details-modal`, `details-disclosure` |
-| Other    | `localization-form`, `password-modal` |
+| Other    | `localization-form`, `password-modal`                                                     |
 
 ---
 
@@ -152,6 +152,7 @@ Cursor users get additional specialized guidance via the hatch3r agent infrastru
 ## Additional Skill assignment
 
 Always use these skills when involving these specific topics:
+
 - **nano-banana-pro** (`/.agents/skills/nano-banana-pro`): when images or assets are needed on the fly.
 - **seo-audit** (`/.agents/skills/seo-audit`): when SEO is part of the task
 - **ui-ux-pro-max** (`/.agents/skills/ui-ux-pro-max`): When user interface, design or user experience topics are part of the task.
@@ -162,12 +163,12 @@ Always use these skills when involving these specific topics:
 
 This project uses three commands and an auto-maintained GitHub issue to manage the project board:
 
-| Primitive           | What it does                                                                                                                                                                           | When to use                                                                                  |
-| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| **`board-fill`**    | Creates epics/issues from `todo.md`, reorganizes the board (dependencies, grouping, readiness), syncs Projects v2 status, and updates the Board Overview super-epic.                   | When new work items need to be added, or existing issues need dependency analysis and triage. |
-| **`board-pickup`**  | Presents available work, auto-picks the next best issue when none is specified, performs collision detection, creates a branch, and delegates to the issue-workflow skill.              | When starting development on an issue.                                                       |
-| **`board-refresh`** | Audits Projects v2 board status against issue labels, reconciles drift, and regenerates the Board Overview. Does not modify issues — only board status and the overview.               | When the board looks out of sync, after manual label changes, or to get a fresh overview.    |
-| **Board Overview**  | A single GitHub issue (`meta:board-overview` label) listing all epics, issues, implementation order, parallel lanes, and live statuses. Auto-maintained by all three commands.         | Read it for a quick overview of the entire board state.                                      |
+| Primitive           | What it does                                                                                                                                                                   | When to use                                                                                   |
+| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| **`board-fill`**    | Creates epics/issues from `todo.md`, reorganizes the board (dependencies, grouping, readiness), syncs Projects v2 status, and updates the Board Overview super-epic.           | When new work items need to be added, or existing issues need dependency analysis and triage. |
+| **`board-pickup`**  | Presents available work, auto-picks the next best issue when none is specified, performs collision detection, creates a branch, and delegates to the issue-workflow skill.     | When starting development on an issue.                                                        |
+| **`board-refresh`** | Audits Projects v2 board status against issue labels, reconciles drift, and regenerates the Board Overview. Does not modify issues — only board status and the overview.       | When the board looks out of sync, after manual label changes, or to get a fresh overview.     |
+| **Board Overview**  | A single GitHub issue (`meta:board-overview` label) listing all epics, issues, implementation order, parallel lanes, and live statuses. Auto-maintained by all three commands. | Read it for a quick overview of the entire board state.                                       |
 
 **Typical cycle:** Add items to `todo.md` --> run `board-fill` --> review Board Overview --> run `board-pickup` (or let it auto-pick) --> develop --> open PR --> Board Overview refreshes automatically. Run `board-refresh` at any time to reconcile drift.
 
@@ -177,14 +178,14 @@ This project uses three commands and an auto-maintained GitHub issue to manage t
 
 Each issue type has a dedicated skill in `/.agents/skills/`:
 
-| Issue Type        | Skill                                              |
-| ----------------- | -------------------------------------------------- |
-| Bug report        | `/.agents/skills/hatch3r-bug-fix/SKILL.md`         |
-| Feature request   | `/.agents/skills/hatch3r-feature/SKILL.md`         |
-| Code refactor     | `/.agents/skills/hatch3r-refactor/SKILL.md`        |
-| Logical refactor  | `/.agents/skills/hatch3r-logical-refactor/SKILL.md`|
-| Visual refactor   | `/.agents/skills/hatch3r-visual-refactor/SKILL.md` |
-| QA E2E validation | `/.agents/skills/hatch3r-qa-validation/SKILL.md`   |
+| Issue Type        | Skill                                               |
+| ----------------- | --------------------------------------------------- |
+| Bug report        | `/.agents/skills/hatch3r-bug-fix/SKILL.md`          |
+| Feature request   | `/.agents/skills/hatch3r-feature/SKILL.md`          |
+| Code refactor     | `/.agents/skills/hatch3r-refactor/SKILL.md`         |
+| Logical refactor  | `/.agents/skills/hatch3r-logical-refactor/SKILL.md` |
+| Visual refactor   | `/.agents/skills/hatch3r-visual-refactor/SKILL.md`  |
+| QA E2E validation | `/.agents/skills/hatch3r-qa-validation/SKILL.md`    |
 
 **Workflow:** Read issue --> load issue-type skill --> plan --> implement --> test --> open PR. Full details in the `hatch3r-issue-workflow` skill.
 

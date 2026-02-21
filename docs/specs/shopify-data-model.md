@@ -21,62 +21,62 @@ Use **Shopify Metaobjects** to store education and product-related content. This
 
 ### Ingredients
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | single_line_text | Ingredient name |
-| `description` | multi_line_text | What it is |
-| `benefits` | multi_line_text | Why it's included |
-| `evidence_notes` | multi_line_text | Research/evidence summary |
+| Field                  | Type                   | Description                            |
+| ---------------------- | ---------------------- | -------------------------------------- |
+| `name`                 | single_line_text       | Ingredient name                        |
+| `description`          | multi_line_text        | What it is                             |
+| `benefits`             | multi_line_text        | Why it's included                      |
+| `evidence_notes`       | multi_line_text        | Research/evidence summary              |
 | `included_in_formulas` | list.product_reference | Which products include this ingredient |
-| `image` | file_reference | Optional ingredient image |
+| `image`                | file_reference         | Optional ingredient image              |
 
 ### Clinical Callouts
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `metric` | single_line_text | The metric or claim (e.g., "500mg Vitamin C") |
-| `context` | multi_line_text | Supporting context |
-| `disclaimer` | single_line_text | Required disclaimer text |
+| Field        | Type             | Description                                   |
+| ------------ | ---------------- | --------------------------------------------- |
+| `metric`     | single_line_text | The metric or claim (e.g., "500mg Vitamin C") |
+| `context`    | multi_line_text  | Supporting context                            |
+| `disclaimer` | single_line_text | Required disclaimer text                      |
 
 ### Advisor Profiles
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | single_line_text | Advisor full name |
-| `title` | single_line_text | Credential/title |
-| `headshot` | file_reference | Portrait image |
-| `quote` | multi_line_text | Quote for use in templates |
+| Field      | Type             | Description                |
+| ---------- | ---------------- | -------------------------- |
+| `name`     | single_line_text | Advisor full name          |
+| `title`    | single_line_text | Credential/title           |
+| `headshot` | file_reference   | Portrait image             |
+| `quote`    | multi_line_text  | Quote for use in templates |
 
 ### FAQs
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `question` | single_line_text | FAQ question |
-| `answer` | multi_line_text | FAQ answer |
-| `scope` | single_line_text | "global" or product handle (for product-specific FAQs) |
+| Field      | Type             | Description                                            |
+| ---------- | ---------------- | ------------------------------------------------------ |
+| `question` | single_line_text | FAQ question                                           |
+| `answer`   | multi_line_text  | FAQ answer                                             |
+| `scope`    | single_line_text | "global" or product handle (for product-specific FAQs) |
 
 ### Flavor Variants
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `name` | single_line_text | Flavor name |
-| `tasting_notes` | multi_line_text | Flavor description |
-| `pairing` | single_line_text | Suggested pairing or context |
-| `acidity_scale` | number_integer | 1–5 scale |
-| `sweetness_scale` | number_integer | 1–5 scale |
+| Field             | Type             | Description                  |
+| ----------------- | ---------------- | ---------------------------- |
+| `name`            | single_line_text | Flavor name                  |
+| `tasting_notes`   | multi_line_text  | Flavor description           |
+| `pairing`         | single_line_text | Suggested pairing or context |
+| `acidity_scale`   | number_integer   | 1–5 scale                    |
+| `sweetness_scale` | number_integer   | 1–5 scale                    |
 
 ---
 
 ## Relationships
 
-| Relationship | Description |
-|--------------|-------------|
-| **Ingredients → Products** | `included_in_formulas` links ingredients to products; enables "filter by formula" in glossary |
-| **Products → Ingredients** | Products reference ingredients for "What's inside" tabbed content |
-| **Products → Clinical Callouts** | Products can display relevant clinical callouts |
-| **Products → FAQs** | FAQs with `scope` = product handle display on that PDP |
-| **Products → Flavor Variants** | Flavor variants link to product variants for tasting notes and scales |
-| **Templates → Metaobjects** | Sections pull from metaobjects via Shopify Liquid or Storefront API |
+| Relationship                     | Description                                                                                   |
+| -------------------------------- | --------------------------------------------------------------------------------------------- |
+| **Ingredients → Products**       | `included_in_formulas` links ingredients to products; enables "filter by formula" in glossary |
+| **Products → Ingredients**       | Products reference ingredients for "What's inside" tabbed content                             |
+| **Products → Clinical Callouts** | Products can display relevant clinical callouts                                               |
+| **Products → FAQs**              | FAQs with `scope` = product handle display on that PDP                                        |
+| **Products → Flavor Variants**   | Flavor variants link to product variants for tasting notes and scales                         |
+| **Templates → Metaobjects**      | Sections pull from metaobjects via Shopify Liquid or Storefront API                           |
 
 ---
 

@@ -3,6 +3,7 @@ id: hatch3r-dep-audit
 type: command
 description: Scan, assess, and upgrade npm dependencies. Categorizes findings by severity (CVEs, major/minor/patch outdated), researches migration paths, upgrades packages one at a time with testing, and creates tracking issues for unaddressed items.
 ---
+
 # Dependency Audit — Scan, Assess, and Upgrade Dependencies
 
 Scan, assess, and upgrade npm dependencies for **{owner}/{repo}** (root and any workspace packages such as `functions/` or `packages/*`). Categorizes findings by severity (CVEs, major/minor/patch outdated), researches migration paths, upgrades packages one at a time with testing, and creates tracking issues for unaddressed items.
@@ -90,6 +91,7 @@ For each selected package, **one at a time**:
    ```
 
 3. If tests fail:
+
    - Assess whether it's a breaking change needing code updates or a genuine regression.
    - **STOP** and report the failure.
    - **ASK:** "Tests failed for {package}. (a) roll back and create tracking issue, (b) attempt code fixes, (c) skip this package and continue"
@@ -115,6 +117,7 @@ For each selected package, **one at a time**:
 For any CVEs or outdated packages **NOT** addressed in this session:
 
 1. Create GitHub issues via `issue_write` with:
+
    - **Owner:** from shared context
    - **Repo:** from shared context
    - **Labels:** `type:bug`, `area:security`, `priority:{based on severity}`, `executor:agent`

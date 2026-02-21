@@ -4,6 +4,7 @@ type: rule
 description: Logging, metrics, and tracing conventions for the project
 scope: always
 ---
+
 # Observability
 
 - Use structured JSON logging. No `console.log` in production code.

@@ -8,7 +8,7 @@ Step-by-step launch execution plan from pre-validation through retention, coveri
 
 ## Phase 1: Pre-validation
 
-*Before manufacturing big MOQs — prove demand and CAC range.*
+_Before manufacturing big MOQs — prove demand and CAC range._
 
 - [ ] Landing page + quiz waitlist live
 - [ ] 2–3 paid creative angles tested (stage-based pain points vs "replace 7 pills")
@@ -19,7 +19,7 @@ Step-by-step launch execution plan from pre-validation through retention, coveri
 
 ## Phase 2: Launch (First 30 Days)
 
-*Push quiz as primary CTA; establish core SEO footprint.*
+_Push quiz as primary CTA; establish core SEO footprint._
 
 - [ ] Push quiz as primary CTA everywhere
 - [ ] 10 core SEO pages live:
@@ -32,7 +32,7 @@ Step-by-step launch execution plan from pre-validation through retention, coveri
 
 ## Phase 3: Retention (Day 31–120)
 
-*Education sequences and subscription optimization.*
+_Education sequences and subscription optimization._
 
 - [ ] "What to expect" education sequence (mirrors timeline approach)
 - [ ] Quarterly subscription nudges
