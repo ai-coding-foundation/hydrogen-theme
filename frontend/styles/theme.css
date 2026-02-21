@@ -4,6 +4,15 @@
   --color-notice: rgb(191 72 0);
   --color-shop-pay: #5a31f4;
 
+  --color-stage-cycle: #2d6a4f;
+  --color-stage-cycle-light: #d8e8de;
+  --color-stage-transition: #9b2226;
+  --color-stage-transition-light: #eacbcc;
+  --color-stage-thrive: #3c1874;
+  --color-stage-thrive-light: #d5c8e8;
+  --color-stage-neutral: #f5f0eb;
+  --color-stage-neutral-dark: #2d2d2d;
+
   --spacing-nav: var(--height-nav);
   --spacing-screen-no-nav: calc(
     var(--screen-height, 100vh) - var(--height-nav)
@@ -16,13 +25,30 @@
   --font-heading: var(--font-heading-family);
 
   --text-display: var(--font-size-display);
-  --text-display-line-height: 1.1;
+  --text-display-line-height: 1.05;
+  --text-display-letter-spacing: -0.02em;
+  --text-h1: var(--font-size-h1);
+  --text-h1-line-height: 1.1;
+  --text-h1-letter-spacing: -0.015em;
+  --text-h2: var(--font-size-h2);
+  --text-h2-line-height: 1.15;
+  --text-h2-letter-spacing: -0.01em;
+  --text-h3: var(--font-size-h3);
+  --text-h3-line-height: 1.2;
+  --text-h4: var(--font-size-h4);
+  --text-h4-line-height: 1.25;
+  --text-h5: var(--font-size-h5);
+  --text-h5-line-height: 1.3;
+  --text-h6: var(--font-size-h6);
+  --text-h6-line-height: 1.35;
   --text-heading: var(--font-size-heading);
   --text-heading-line-height: 1.25;
   --text-lead: var(--font-size-lead);
   --text-lead-line-height: 1.333;
   --text-copy: var(--font-size-copy);
   --text-copy-line-height: 1.5;
+  --text-small: var(--font-size-small);
+  --text-small-line-height: 1.4;
   --text-fine: var(--font-size-fine);
   --text-fine-line-height: 1.333;
 

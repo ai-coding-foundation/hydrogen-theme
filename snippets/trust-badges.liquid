@@ -1,0 +1,70 @@
+{%- doc -%}
+  Renders a row of trust badge icons with labels.
+
+  @param {string} [badges] - comma-separated badge keys (default: 'doctor-formulated,clinically-dosed,sugar-free,third-party-tested')
+  @param {string} [icon_size] - Tailwind size class applied to icon wrapper (default: 'w-10 h-10')
+  @param {string} [icon_color] - Tailwind color class (default: 'text-stage-cycle')
+  @param {boolean} [show_labels] - show text labels (default: true)
+{%- enddoc -%}
+
+{%- liquid
+  unless badges
+    assign badges = 'doctor-formulated,clinically-dosed,sugar-free,third-party-tested'
+  endunless
+
+  unless icon_size
+    assign icon_size = 'w-10 h-10'
+  endunless
+
+  unless icon_color
+    assign icon_color = 'text-stage-cycle'
+  endunless
+
+  unless show_labels == false
+    assign show_labels = true
+  endunless
+
+  assign badge_keys = badges | split: ','
+-%}
+
+<div class="flex flex-wrap items-start justify-center gap-6 md:gap-10">
+  {%- for key in badge_keys -%}
+    {%- assign key = key | strip -%}
+    <div class="flex flex-col items-center gap-2 text-center">
+      <div class="{{ icon_color }} {{ icon_size }} [&_svg]:size-full">
+        {%- case key -%}
+          {%- when 'doctor-formulated' -%}
+            {%- render 'icon-doctor-formulated' -%}
+          {%- when 'clinically-dosed' -%}
+            {%- render 'icon-clinically-dosed' -%}
+          {%- when 'sugar-free' -%}
+            {%- render 'icon-sugar-free' -%}
+          {%- when 'third-party-tested' -%}
+            {%- render 'icon-third-party-tested' -%}
+          {%- when 'gluten-free' -%}
+            {%- render 'icon-gluten-free' -%}
+          {%- when 'vegetarian' -%}
+            {%- render 'icon-vegetarian' -%}
+        {%- endcase -%}
+      </div>
+      {%- if show_labels -%}
+        <span class="text-small font-body text-primary/80">
+          {%- case key -%}
+            {%- when 'doctor-formulated' -%}
+              Doctor Formulated
+            {%- when 'clinically-dosed' -%}
+              Clinically Dosed
+            {%- when 'sugar-free' -%}
+              Sugar Free
+            {%- when 'third-party-tested' -%}
+              Third-Party Tested
+            {%- when 'gluten-free' -%}
+              Gluten Free
+            {%- when 'vegetarian' -%}
+              Vegetarian
+          {%- endcase -%}
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>
