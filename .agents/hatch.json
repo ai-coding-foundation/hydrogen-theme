@@ -1,0 +1,122 @@
+{
+  "version": "1.0.0",
+  "hatch3rVersion": "0.1.0",
+  "tools": [
+    "cursor",
+    "copilot"
+  ],
+  "presets": [
+    "default"
+  ],
+  "features": {
+    "agents": true,
+    "skills": true,
+    "rules": true,
+    "prompts": true,
+    "commands": true,
+    "mcp": true,
+    "guardrails": true,
+    "githubAgents": true
+  },
+  "mcp": {
+    "servers": [
+      "github",
+      "context7"
+    ]
+  },
+  "packs": [],
+  "managedFiles": [
+    ".cursor/rules/hatch3r-tooling-hierarchy.mdc",
+    ".cursor/rules/hatch3r-testing.mdc",
+    ".cursor/rules/hatch3r-performance-budgets.mdc",
+    ".cursor/rules/hatch3r-observability.mdc",
+    ".cursor/rules/hatch3r-migrations.mdc",
+    ".cursor/rules/hatch3r-feature-flags.mdc",
+    ".cursor/rules/hatch3r-error-handling.mdc",
+    ".cursor/rules/hatch3r-dependency-management.mdc",
+    ".cursor/rules/hatch3r-component-conventions.mdc",
+    ".cursor/rules/hatch3r-code-standards.mdc",
+    ".cursor/rules/hatch3r-api-design.mdc",
+    ".cursor/agents/hatch3r-hatch3r-test-writer.md",
+    ".cursor/agents/hatch3r-hatch3r-security-auditor.md",
+    ".cursor/agents/hatch3r-hatch3r-reviewer.md",
+    ".cursor/agents/hatch3r-hatch3r-perf-profiler.md",
+    ".cursor/agents/hatch3r-hatch3r-lint-fixer.md",
+    ".cursor/agents/hatch3r-hatch3r-implementer.md",
+    ".cursor/agents/hatch3r-hatch3r-docs-writer.md",
+    ".cursor/agents/hatch3r-hatch3r-dependency-auditor.md",
+    ".cursor/agents/hatch3r-hatch3r-ci-watcher.md",
+    ".cursor/agents/hatch3r-hatch3r-a11y-auditor.md",
+    ".cursor/skills/hatch3r-hatch3r-a11y-audit/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-architecture-review/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-bug-fix/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-dep-audit/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-feature/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-gh-agentic-workflows/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-incident-response/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-issue-workflow/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-logical-refactor/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-perf-audit/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-pr-creation/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-qa-validation/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-refactor/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-release/SKILL.md",
+    ".cursor/skills/hatch3r-hatch3r-visual-refactor/SKILL.md",
+    ".cursor/commands/hatch3r-hatch3r-release.md",
+    ".cursor/commands/hatch3r-hatch3r-healthcheck.md",
+    ".cursor/commands/hatch3r-hatch3r-dep-audit.md",
+    ".cursor/commands/hatch3r-hatch3r-board-shared.md",
+    ".cursor/commands/hatch3r-hatch3r-board-pickup.md",
+    ".cursor/commands/hatch3r-hatch3r-board-init.md",
+    ".cursor/commands/hatch3r-hatch3r-board-fill.md",
+    ".cursor/mcp.json",
+    ".cursor/rules/hatch3r-bridge.mdc",
+    ".github/copilot-instructions.md",
+    "AGENTS.md",
+    ".github/copilot-setup-steps.yml",
+    ".github/prompts/hatch3r-hatch3r-pr-description.prompt.md",
+    ".github/prompts/hatch3r-hatch3r-code-review.prompt.md",
+    ".github/prompts/hatch3r-hatch3r-bug-triage.prompt.md",
+    ".github/agents/hatch3r-.md"
+  ],
+  "board": {
+    "owner": "ai-coding-foundation",
+    "repo": "hydrogen-theme",
+    "projectNumber": 2,
+    "statusFieldId": 260300878,
+    "statusOptions": {
+      "backlog": "f75ad846",
+      "ready": "f75ad846",
+      "inProgress": "47fc9ee4",
+      "inReview": "47fc9ee4",
+      "done": "98236657"
+    },
+    "labels": {
+      "types": [
+        "type:bug",
+        "type:feature",
+        "type:refactor",
+        "type:qa",
+        "type:docs",
+        "type:infra"
+      ],
+      "executors": [
+        "executor:agent",
+        "executor:human",
+        "executor:hybrid"
+      ],
+      "statuses": [
+        "status:triage",
+        "status:ready",
+        "status:in-progress",
+        "status:in-review",
+        "status:blocked"
+      ],
+      "meta": [
+        "meta:board-overview"
+      ]
+    },
+    "branchConvention": "{type}/{short-description}",
+    "areas": []
+  }
+}

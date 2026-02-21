@@ -1,0 +1,62 @@
+{%- doc -%}
+  Renders a grid of outcomes icons with labels.
+
+  @param {string} [outcomes] - comma-separated outcome keys (default: 'mood,energy,digestion,sleep')
+  @param {string} [heading] - optional section heading
+  @param {string} [icon_color] - Tailwind color class (default: 'text-primary')
+  @param {boolean} [show_labels] - show text labels (default: true)
+{%- enddoc -%}
+
+{%- liquid
+  unless outcomes
+    assign outcomes = 'mood,energy,digestion,sleep'
+  endunless
+
+  unless icon_color
+    assign icon_color = 'text-primary'
+  endunless
+
+  unless show_labels == false
+    assign show_labels = true
+  endunless
+
+  assign outcome_keys = outcomes | split: ','
+-%}
+
+{%- if heading != blank -%}
+  <h3 class="text-heading font-heading mb-6 text-center">{{ heading }}</h3>
+{%- endif -%}
+
+<div class="grid grid-cols-2 gap-6 md:grid-cols-4">
+  {%- for key in outcome_keys -%}
+    {%- assign key = key | strip -%}
+    <div class="flex flex-col items-center text-center">
+      <div class="bg-stage-neutral mx-auto mb-2 flex h-12 w-12 items-center justify-center rounded-full {{ icon_color }} [&_svg]:size-6">
+        {%- case key -%}
+          {%- when 'mood' -%}
+            {%- render 'icon-mood' -%}
+          {%- when 'energy' -%}
+            {%- render 'icon-energy' -%}
+          {%- when 'digestion' -%}
+            {%- render 'icon-digestion' -%}
+          {%- when 'sleep' -%}
+            {%- render 'icon-sleep' -%}
+        {%- endcase -%}
+      </div>
+      {%- if show_labels -%}
+        <span class="text-small font-heading font-heading-weight">
+          {%- case key -%}
+            {%- when 'mood' -%}
+              Mood Steadiness
+            {%- when 'energy' -%}
+              Natural Energy
+            {%- when 'digestion' -%}
+              Digestion
+            {%- when 'sleep' -%}
+              Sleep Quality
+          {%- endcase -%}
+        </span>
+      {%- endif -%}
+    </div>
+  {%- endfor -%}
+</div>

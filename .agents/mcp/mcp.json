@@ -1,0 +1,54 @@
+{
+  "mcpServers": {
+    "github": {
+      "_description": "GitHub repository management, code review, issues, PRs, and project boards",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer ${GITHUB_PAT}",
+        "X-MCP-Toolsets": "all"
+      }
+    },
+    "context7": {
+      "_description": "Up-to-date, version-specific library documentation for LLMs",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "filesystem": {
+      "_description": "File management and code editing operations",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-filesystem"]
+    },
+    "playwright": {
+      "_description": "Browser automation, web testing, and UI interaction",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-playwright"]
+    },
+    "brave-search": {
+      "_description": "Web research, fact-checking, and current information retrieval",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-brave-search"],
+      "env": { "BRAVE_API_KEY": "${BRAVE_API_KEY}" }
+    },
+    "sentry": {
+      "_disabled": true,
+      "_description": "Error tracking and performance monitoring (enable and configure with your Sentry auth token)",
+      "command": "npx",
+      "args": ["-y", "@sentry/mcp-server"],
+      "env": { "SENTRY_AUTH_TOKEN": "${SENTRY_AUTH_TOKEN}" }
+    },
+    "postgres": {
+      "_disabled": true,
+      "_description": "PostgreSQL database queries and schema inspection (enable and configure with your connection string)",
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres"],
+      "env": { "POSTGRES_URL": "${POSTGRES_URL}" }
+    },
+    "linear": {
+      "_disabled": true,
+      "_description": "Linear issue tracking and project management (enable and configure with your Linear API key)",
+      "command": "npx",
+      "args": ["-y", "@anthropic/mcp-server-linear"],
+      "env": { "LINEAR_API_KEY": "${LINEAR_API_KEY}" }
+    }
+  }
+}

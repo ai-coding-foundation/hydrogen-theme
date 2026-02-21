@@ -33,6 +33,54 @@
     ]
   },
   {
+    "name": "Stage Colors",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Life stage hero colors"
+      },
+      {
+        "type": "color",
+        "id": "colors_stage_cycle",
+        "default": "#2D6A4F",
+        "label": "Cycle",
+        "info": "Cool green — hero color for the Cycle life stage"
+      },
+      {
+        "type": "color",
+        "id": "colors_stage_transition",
+        "default": "#9B2226",
+        "label": "Transition",
+        "info": "Deep red — hero color for the Transition life stage"
+      },
+      {
+        "type": "color",
+        "id": "colors_stage_thrive",
+        "default": "#3C1874",
+        "label": "Thrive",
+        "info": "Midnight violet — hero color for the Thrive life stage"
+      },
+      {
+        "type": "header",
+        "content": "Neutral base"
+      },
+      {
+        "type": "color",
+        "id": "colors_stage_neutral",
+        "default": "#F5F0EB",
+        "label": "Neutral",
+        "info": "Warm off-white base that complements all three stages"
+      },
+      {
+        "type": "color",
+        "id": "colors_stage_neutral_dark",
+        "default": "#2D2D2D",
+        "label": "Neutral dark",
+        "info": "Dark neutral for text on light stage backgrounds"
+      }
+    ]
+  },
+  {
     "name": "Typography",
     "settings": [
       {
@@ -42,7 +90,7 @@
       {
         "type": "font_picker",
         "id": "type_header_font",
-        "default": "helvetica_n7",
+        "default": "playfair_display_n7",
         "label": "Font",
         "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
       },
@@ -53,7 +101,7 @@
       {
         "type": "font_picker",
         "id": "type_body_font",
-        "default": "helvetica_n4",
+        "default": "work_sans_n4",
         "label": "Font",
         "info": "Selecting a different font can affect the speed of your store. [Learn more about system fonts.](https://help.shopify.com/manual/online-store/os/store-speed/improving-speed#fonts)"
       }
